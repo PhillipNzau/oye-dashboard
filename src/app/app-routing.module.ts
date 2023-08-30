@@ -14,7 +14,7 @@ const routes: Routes = [
   //   }
   // },
   {
-    path: 'auth', 
+    path: '', 
     component: LoginComponent,
   },
   { path: '**', redirectTo: '' }

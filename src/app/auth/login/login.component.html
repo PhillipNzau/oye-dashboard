@@ -1,1 +1,74 @@
-<p>login works!</p>
+<section class="w-full h-screen flex items-center justify-center px-6">
+  <form
+    *ngIf="!forgotPwd"
+    [formGroup]="loginForm"
+    (ngSubmit)="loginUser()"
+    class="rounded-2xl border border-blue-900 md:w-[480px] md:h-[509px] bg-white mx-auto px-6 md:px-10 py-12 flex flex-col items-center justify-center gap-14"
+  >
+    <img src="../../../assets/imgs/" alt="your logo" />
+    <div class="w-full flex flex-col gap-7">
+      <label>
+        <input
+          type="email"
+          formControlName="username"
+          id="email"
+          placeholder="Email"
+          class="border border-200 rounded-lg w-full h-14 px-6 placeholder-neutral-300 text-blue-900 text-base font-medium outline-none focus:border-blue-900 transition-all duration-200"
+        />
+        <div
+          class="text-red-600 mt-1"
+          *ngIf="
+            loginForm.controls['username'].hasError('required') &&
+            (loginForm.controls['username'].dirty ||
+              loginForm.controls['username'].touched)
+          "
+        >
+          Email is required.
+        </div>
+        <div
+          class="text-red-600 mt-1"
+          *ngIf="
+            loginForm.controls['username'].hasError('email') &&
+            loginForm.controls['username'].touched
+          "
+        >
+          Email is invalid.
+        </div>
+      </label>
+
+      <label>
+        <input
+          type="password"
+          formControlName="password"
+          id="password"
+          placeholder="Password"
+          class="border border-200 rounded-lg w-full h-14 px-6 placeholder-neutral-300 text-blue-900 text-base font-medium outline-none focus:border-blue-900 transition-all duration-200"
+        />
+        <div
+          class="text-red-600 mt-1"
+          *ngIf="
+            loginForm.controls['password'].invalid &&
+            (loginForm.controls['password'].dirty ||
+              loginForm.controls['password'].touched)
+          "
+        >
+          Password is required.
+        </div>
+      </label>
+
+      <button
+        [disabled]="loginForm.invalid"
+        [ngClass]="{ 'bg-slate-400': loginForm.invalid }"
+        class="bg-blue-900 border-none rounded-lg w-full h-14 px-6 placeholder-neutral-300 text-white text-base md:text-2xl font-bold transition-all duration-200"
+      >
+        Login
+      </button>
+      <p
+        class="text-blue-900 text-base font-medium hover:cursor-pointer border-b border-transparent md:w-1/2 hover:border-blue-900 transition-all duration-200"
+        (click)="toggleForgot()"
+      >
+        Forgot your password?
+      </p>
+    </div>
+  </form>
+</section>
