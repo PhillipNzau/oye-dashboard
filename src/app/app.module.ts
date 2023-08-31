@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './auth/auth-service/auth.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AuthService } from './auth/auth-service/auth.service';
     ReactiveFormsModule ,
     BrowserAnimationsModule,
     HotToastModule.forRoot({}),
+    NgxPaginationModule,
     
 
     // Ngrx Store

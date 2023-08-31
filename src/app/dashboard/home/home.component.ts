@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxPaginationModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  pagedTableData: any[] = []; // Array to hold the paginated data
   tableData: any[] = [
     {
       title: '1',
@@ -32,7 +34,25 @@ export class HomeComponent {
       time: '10:00',
       receiptNumber: '54321'
     },
-    // Add more mock data items here
+
   ];
+
+    // Pagination settings
+  config: any = {
+    id: 'custom-pagination',
+    itemsPerPage: 10,
+    currentPage: 1
+  };
+
+  onPageChange(page: number) {
+    this.config.currentPage = page;
+    this.loadPageData();
+  }
+
+  loadPageData() {
+    const startIndex = (this.config.currentPage - 1) * this.config.itemsPerPage;
+    const endIndex = startIndex + this.config.itemsPerPage;
+    this.pagedTableData = this.tableData.slice(startIndex, endIndex);
+  }
 
 }
