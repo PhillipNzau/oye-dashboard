@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     this.toastService.success('Welcome!');
 
     // Check if user is logged in, if user is logged in redirect to home page
-    !!localStorage.getItem('pdTkn') ? this.route.navigate(['/']).then(() => {}) : null 
+    // !!localStorage.getItem('pdTkn') ? this.route.navigate(['/']).then(() => {}) : null 
   }
   
   toggleForgot() {
