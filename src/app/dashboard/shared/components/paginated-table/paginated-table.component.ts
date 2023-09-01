@@ -33,6 +33,16 @@ export class PaginatedTableComponent {
       date: '2023-09-17',
       time: '10:00',
       receiptNumber: '54321'
+    },{
+      title: '2',
+      mobile: '987-654-3210',
+      amount: '$200',
+      airTimeForPayment: '5 days',
+      status: 'Paid',
+      airTimeStatus: 'Submitted',
+      date: '2023-09-17',
+      time: '10:00',
+      receiptNumber: '54321'
     },
 
   ];
