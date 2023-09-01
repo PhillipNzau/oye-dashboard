@@ -32,7 +32,7 @@
           'font-bold': isRouteActive('/transactions')
         }"
         class="flex flex-col items-center group hover:cursor-pointer hover:font-bold w-20"
-        routerLink="/auth"
+        routerLink="/transactions"
       >
         Transactions
         <div
@@ -44,6 +44,7 @@
         ></div>
       </li>
       <li
+        routerLink="/customers"
         [ngClass]="{
           'font-bold': isRouteActive('/customers')
         }"
