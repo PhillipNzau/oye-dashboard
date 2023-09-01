@@ -12,27 +12,50 @@
     <!-- navigations -->
     <ul class="flex items-center justify-between md:gap-20 mt-2.5">
       <li
+        [ngClass]="{
+          'font-bold': isRouteActive('/')
+        }"
         class="flex flex-col items-center group hover:cursor-pointer hover:font-bold w-20"
+        routerLink=""
       >
         Dashboard
         <div
-          class="bg-transparent -translate-y-[10%] group-hover:translate-y-[10%] group-hover:bg-teal-700 w-2.5 h-2.5 rounded-full transition-all duration-200"
+          [ngClass]="{
+            'bg-transparent': !isRouteActive('/'),
+            'bg-teal-700': isRouteActive('/')
+          }"
+          class="-translate-y-[10%] group-hover:translate-y-[10%] group-hover:bg-teal-700 w-2.5 h-2.5 rounded-full transition-all duration-200"
         ></div>
       </li>
       <li
+        [ngClass]="{
+          'font-bold': isRouteActive('/transactions')
+        }"
         class="flex flex-col items-center group hover:cursor-pointer hover:font-bold w-20"
+        routerLink="/auth"
       >
         Transactions
         <div
-          class="bg-transparent -translate-y-[10%] group-hover:translate-y-[10%] group-hover:bg-teal-700 w-2.5 h-2.5 rounded-full transition-all duration-200"
+          [ngClass]="{
+            'bg-transparent': !isRouteActive('/transactions'),
+            'bg-teal-700': isRouteActive('/transactions')
+          }"
+          class="-translate-y-[10%] group-hover:translate-y-[10%] group-hover:bg-teal-700 w-2.5 h-2.5 rounded-full transition-all duration-200"
         ></div>
       </li>
       <li
+        [ngClass]="{
+          'font-bold': isRouteActive('/customers')
+        }"
         class="flex flex-col items-center group hover:cursor-pointer hover:font-bold w-20"
       >
         Customers
         <div
-          class="bg-transparent -translate-y-[10%] group-hover:translate-y-[10%] group-hover:bg-teal-700 w-2.5 h-2.5 rounded-full transition-all duration-200"
+          [ngClass]="{
+            'bg-transparent': !isRouteActive('/customers'),
+            'bg-teal-700': isRouteActive('/customers')
+          }"
+          class="-translate-y-[10%] group-hover:translate-y-[10%] group-hover:bg-teal-700 w-2.5 h-2.5 rounded-full transition-all duration-200"
         ></div>
       </li>
     </ul>
