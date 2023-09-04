@@ -63,7 +63,7 @@ export class TransactionsComponent implements OnInit {
     if (this.selectedStatus === 'all') {
       this.filteredTableData = this.tableData.slice();
     } else {
-      this.filteredTableData = this.tableData.filter(item => item.status === this.selectedStatus);
+      this.filteredTableData = this.tableData.filter(item => item.status.toLowerCase() === this.selectedStatus);
     }
 
     // Apply search filter
@@ -81,6 +81,12 @@ export class TransactionsComponent implements OnInit {
         item.receiptNumber.toLowerCase().includes(searchTextLower)
       );
     }
+  }
+
+  // Filter table with the status tabs
+  selectItem(item: string) {
+    this.selectedStatus = item;
+    this.filterData()
   }
 
 }

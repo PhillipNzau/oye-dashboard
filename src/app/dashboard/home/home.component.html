@@ -1,10 +1,12 @@
 <!-- header section -->
-<section class="relative bg-cyan-950 h-56 px-10 py-9 mb-24">
-  <h1 class="text-myTeal text-xl font-normal">Welcome back, Kevin</h1>
+<section
+  class="text-center md:text-start md:relative bg-cyan-950 md:h-56 px-5 md:px-10 py-9 md:mb-24"
+>
+  <h1 class="text-myTeal text-xl font-normal mb-5">Welcome back, Kevin</h1>
 
   <!-- Cards -->
   <div
-    class="flex items-center justify-between gap-4 w-full h-50 -bottom-2.5 left-0 mt-24"
+    class="flex items-center justify-center md:justify-between gap-4 w-full flex-wrap md:flex-nowrap h-50 md:-bottom-2.5 md:left-0 md:mt-24"
   >
     <!-- Sales card -->
     <div class="bg-white rounded-lg w-80 h-32 flex items-center gap-4 px-6">
@@ -74,7 +76,7 @@
   </div>
 </section>
 
-<section class="px-10 py-9">
+<section class="px-5 py-4 md:px-10 md:py-9">
   <!-- data table -->
-  <app-paginated-table></app-paginated-table>
+  <app-paginated-table [tableData]="tableData"></app-paginated-table>
 </section>

@@ -8,7 +8,7 @@
   <table class="min-w-full min-h-[250px] border border-gray-200 mb-3.5">
     <thead class="bg-zinc-100 text-cyan-950">
       <tr
-        class="bg-cyan-950 text-white text-left text-xl font-bold px-10 py-3.5"
+        class="bg-cyan-950 text-white text-left text-sm md:text-xl font-bold px-10 py-3.5"
       >
         <th class="p-2" colspan="9">
           <span class="text-transparent w-8">.</span> Latest Transactions
@@ -91,15 +91,15 @@
   </table>
 
   <!-- table pagination -->
-  <div class="flex items-center justify-between px-6">
-    <p class="text-cyan-950">
+  <div class="flex items-center justify-between px-4 md:px-6">
+    <p class="text-cyan-950 text-sm">
       Showing {{ (config.currentPage - 1) * config.itemsPerPage + 1 }} to
       {{ config.currentPage * config.itemsPerPage }} of
       {{ tableData.length }} entries
     </p>
 
     <pagination-controls
-      class=""
+      class="pt-4"
       [id]="config.id"
       [maxSize]="4"
       [directionLinks]="true"
