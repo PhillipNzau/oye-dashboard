@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-paginated-table',
   standalone: true,
-  imports: [CommonModule, NgxPaginationModule, ],
+  imports: [CommonModule, NgxPaginationModule, ModalComponent],
   templateUrl: './paginated-table.component.html',
   styleUrls: ['./paginated-table.component.scss']
 })
@@ -13,6 +14,13 @@ export class PaginatedTableComponent implements OnInit  {
   @Input() selectedStatus: string = '';
   @Input() searchText: string = '';
   @Input() tableData: any[] = [] ;
+
+  // modal triggers
+  showPendingModal:boolean = false;
+
+  closeModal(): void {
+    this.showPendingModal = false;
+  }
 
   
   pagedTableData: any[] = []; // Array to hold the paginated data
