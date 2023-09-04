@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -9,43 +9,14 @@ import { NgxPaginationModule } from 'ngx-pagination';
   templateUrl: './paginated-table.component.html',
   styleUrls: ['./paginated-table.component.scss']
 })
-export class PaginatedTableComponent {
-  pagedTableData: any[] = []; // Array to hold the paginated data
-  tableData: any[] = [
-    {
-      title: '1',
-      mobile: '123-456-7890',
-      amount: '$100',
-      airTimeForPayment: '10 days',
-      status: 'Pending',
-      airTimeStatus: 'Active',
-      date: '2023-09-15',
-      time: '14:30',
-      receiptNumber: '12345'
-    },
-    {
-      title: '2',
-      mobile: '987-654-3210',
-      amount: '$200',
-      airTimeForPayment: '5 days',
-      status: 'Paid',
-      airTimeStatus: 'Inactive',
-      date: '2023-09-17',
-      time: '10:00',
-      receiptNumber: '54321'
-    },{
-      title: '2',
-      mobile: '987-654-3210',
-      amount: '$200',
-      airTimeForPayment: '5 days',
-      status: 'Paid',
-      airTimeStatus: 'Submitted',
-      date: '2023-09-17',
-      time: '10:00',
-      receiptNumber: '54321'
-    },
+export class PaginatedTableComponent implements OnInit  {
+  @Input() selectedStatus: string = '';
+  @Input() searchText: string = '';
+  @Input() tableData: any[] = [] ;
 
-  ];
+  
+  pagedTableData: any[] = []; // Array to hold the paginated data
+  
 
     // Pagination settings
   config: any = {
@@ -53,6 +24,11 @@ export class PaginatedTableComponent {
     itemsPerPage: 10,
     currentPage: 1
   };
+
+  ngOnInit() {
+    // Initially, set filtered data to be the same as tableData
+    this.loadPageData();
+  }
 
   onPageChange(page: number) {
     this.config.currentPage = page;
@@ -64,5 +40,6 @@ export class PaginatedTableComponent {
     const endIndex = startIndex + this.config.itemsPerPage;
     this.pagedTableData = this.tableData.slice(startIndex, endIndex);
   }
+
 
 }
