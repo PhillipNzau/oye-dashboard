@@ -1,9 +1,9 @@
-<section class="w-full h-screen flex items-center justify-center px-6">
+<section class="w-full h-screen flex items-center justify-center px-3 md:px-6">
   <form
     *ngIf="!forgotPwd"
     [formGroup]="loginForm"
     (ngSubmit)="loginUser()"
-    class="rounded-2xl md:w-[480px] md:h-[509px] bg-cyan-950 mx-auto px-6 md:px-10 py-12 flex flex-col items-center justify-center gap-14"
+    class="rounded-2xl w-full md:w-[480px] md:h-[509px] bg-cyan-950 mx-auto px-6 md:px-10 py-12 flex flex-col items-center justify-center gap-7 md:gap-14"
   >
     <img
       src="../../../assets/images/oye-logo.svg"
@@ -69,7 +69,6 @@
       </button>
       <p
         class="text-slate-400 text-base font-medium hover:cursor-pointer border-b border-transparent md:w-1/2 hover:border-slate-400 transition-all duration-200"
-        (click)="toggleForgot()"
       >
         Forgot your password?
       </p>
