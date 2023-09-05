@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class TransactionsComponent implements OnInit {
     selectedStatus: string = 'all';
-     searchText: string = '';
+    searchText: string = '';
     filteredTableData: any[] = [];
 
       tableData: any[] = [

@@ -8,9 +8,9 @@
       class="flex items-center gap-5 border-b border-gradient py-4 text-myTeal w-3/4"
     >
       <li
-        class="group font-bold hover:cursor-pointer hover:font-bold transition-all duration-200 w-36 text-center"
+        class="group font-bold hover:cursor-pointer hover:font-bold transition-all duration-200 w-60 text-center"
       >
-        All Customers
+        Customers > +25472012789
         <div
           class="group-hover:translate-y-[18px] bg-myTeal translate-y-[18px] group-hover:bg-myTeal w-full h-1 transition-all duration-200"
         ></div>
@@ -43,56 +43,87 @@
   </div>
 </section>
 
-<!-- table -->
+<!-- Stats -->
 <section
   class="px-6 md:px-10 py-9 flex items-start flex-wrap md:flex-nowrap justify-center md:justify-between gap-10"
 >
-  <!-- customers table -->
+  <!-- transactions table -->
   <div class="md:w-1/2 w-full">
-    <app-customers-table
-      [searchText]="searchText"
+    <app-transactions-table
       [tableData]="filteredTableData"
-    ></app-customers-table>
+      [searchText]="searchText"
+    ></app-transactions-table>
   </div>
 
   <!-- customer left stats -->
-  <div
-    class="md:grid grid-cols-2 bg-white rounded-xl w-full md:w-1/2 min-h-[272px]"
-  >
-    <div
-      class="border-b md:border-r border-myTeal flex items-center justify-center gap-7 p-12"
-    >
-      <img
-        src="../../../assets/images/customers.svg"
-        alt="average svg"
-        class="w-14 h-14"
-      />
-      <div class="">
-        <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
-          Total Customers
-        </p>
-        <p class="text-cyan-950 text-[28px] font-bold">12,000</p>
+  <div class="bg-white rounded-xl w-full md:w-1/2 min-h-[272px]">
+    <div class="md:grid grid-cols-2 overflow-hidden">
+      <div
+        class="border-b md:border-r border-myTeal flex items-center justify-center gap-7 p-12"
+      >
+        <img
+          src="../../../../../assets/images/total.svg"
+          alt="average svg"
+          class="w-14 h-14"
+        />
+        <div class="">
+          <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
+            Total Spend
+          </p>
+          <p class="text-cyan-950 text-[28px] font-bold">
+            <span class="text-sm">Ksh</span>5,230
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="border-b border-myTeal flex items-center justify-center gap-7 p-12"
+      >
+        <img
+          src="../../../../../assets/images/otherNumbers.svg"
+          alt="average svg"
+          class="w-14 h-14"
+        />
+        <div class="">
+          <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
+            Other Numbers
+          </p>
+          <p class="text-cyan-950 text-[28px] font-bold">3</p>
+        </div>
       </div>
     </div>
 
-    <div
-      class="border-b border-myTeal flex items-center justify-center gap-7 p-12"
-    >
-      <img
-        src="../../../assets/images/otherCustomers.svg"
-        alt="average svg"
-        class="w-14 h-14"
-      />
-      <div class="">
+    <div class="md:grid grid-cols-3">
+      <div
+        class="border-b md:border-b-transparent md:border-r border-myTeal flex items-center justify-center flex-col gap-2 p-12"
+      >
         <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
-          Other Customers
+          Total Spend
         </p>
-        <p class="text-cyan-950 text-[28px] font-bold">1,000</p>
+        <p class="text-cyan-950 text-[28px] font-bold">
+          <span class="text-sm">Ksh</span>5,230
+        </p>
+      </div>
+
+      <div
+        class="border-b md:border-b-transparent md:border-r border-myTeal flex items-center justify-center flex-col gap-2 p-12"
+      >
+        <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
+          Total Spend
+        </p>
+        <p class="text-cyan-950 text-[28px] font-bold">
+          <span class="text-sm">Ksh</span>5,230
+        </p>
+      </div>
+
+      <div class="flex items-center justify-center flex-col gap-2 p-12">
+        <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
+          Total Spend
+        </p>
+        <p class="text-cyan-950 text-[28px] font-bold">
+          <span class="text-sm">Ksh</span>5,230
+        </p>
       </div>
     </div>
-
-    <div
-      class="border-b border-myTeal flex items-center justify-center gap-7 p-12"
-    ></div>
   </div>
 </section>

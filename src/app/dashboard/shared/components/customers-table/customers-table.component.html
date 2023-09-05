@@ -1,0 +1,144 @@
+<div class="overflow-x-auto rounded-bl-xl rounded-xl bg-white">
+  <!-- table title -->
+  <!-- <p class="bg-cyan-950 w-full text-white text-xl font-bold px-8 py-3.5">
+      Latest Transactions
+    </p> -->
+
+  <!-- the table -->
+  <table class="min-w-full min-h-[250px] border mb-3.5">
+    <thead class="bg-zinc-100 text-cyan-950">
+      <tr
+        class="bg-cyan-950 text-white text-left text-sm md:text-xl font-bold px-10 py-3.5"
+      >
+        <th class="p-2" colspan="9">
+          <span class="text-transparent w-8">.</span> Customers
+        </th>
+      </tr>
+      <tr class="tex-center">
+        <th class="p-2">#</th>
+        <th class="p-2">Mobile</th>
+        <th class="p-2">Date</th>
+        <th class="p-2">Time</th>
+        <th class="p-2">Action</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      <!-- Add your table rows here -->
+      <tr
+        *ngFor="let item of tableData | paginate : config"
+        class="text-center text-cyan-950 border-b border-slate-400"
+      >
+        <td class="p-2">{{ item.title }}</td>
+        <td class="p-2">{{ item.mobile }}</td>
+
+        <td class="p-2">{{ item.date }}</td>
+        <td class="p-2">{{ item.time }}</td>
+        <td class="p-2" [routerLink]="['/customers', item.title]">
+          <img
+            class="w-4 mx-auto"
+            src="../../../../../assets/images/view.svg"
+            alt="view"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- table pagination -->
+  <div class="flex items-center justify-between px-4 md:px-6">
+    <p class="text-cyan-950 text-sm">
+      Showing {{ (config.currentPage - 1) * config.itemsPerPage + 1 }} to
+      {{ config.currentPage * config.itemsPerPage }} of
+      {{ tableData.length }} entries
+    </p>
+
+    <pagination-controls
+      class="pt-4"
+      [id]="config.id"
+      [maxSize]="4"
+      [directionLinks]="true"
+      [autoHide]="false"
+      previousLabel=""
+      nextLabel=""
+      (pageChange)="onPageChange($event)"
+    ></pagination-controls>
+  </div>
+</div>
+
+<!-- Modals -->
+<!-- Pending modal -->
+<app-modal
+  *ngIf="showPendingModal"
+  (backdropClick)="closeModal()"
+  width="500"
+  borderColor="blue-900"
+>
+  <!-- modal header -->
+  <div class="bg-cyan-950 text-myTeal text-center rounded-t-2xl p-6 pb-4 mb-9">
+    <div class="flex justify-end">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="none"
+        class="w-6 h-6 stroke-myTeal hover:cursor-pointer"
+        (click)="showPendingModal = false"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </div>
+    <h1 class="font-bold text-3xl text-center mb-1">Pending Transaction</h1>
+    <p>Airtime For: +254720012789</p>
+  </div>
+
+  <!-- modal body -->
+  <div class="">
+    <!-- modal table -->
+    <div class="w-full mb-10">
+      <table class="w-full">
+        <thead>
+          <tr class="border-b-2 border-black text-cyan-950 text-center">
+            <th class="py-4">Mobile</th>
+            <th class="py-4">Amount</th>
+            <th class="py-4">Date</th>
+            <th class="py-4">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-cyan-950 text-center">
+            <td class="py-2">+254720012789</td>
+            <td class="py-2">Ksh 200</td>
+            <td class="py-2">28 Aug 2023</td>
+            <td class="py-2">19:09:57</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Input mpesa code -->
+    <div class="flex flex-col items-center justify-center gap-2 mb-11">
+      <p class="text-cyan-950 text-center">Enter the M-PESA Code</p>
+      <input
+        type="text"
+        name="mpesa"
+        id=""
+        class="outline-none border border-cyan-950 w-64 h-11 rounded-full px-4"
+      />
+    </div>
+
+    <!-- modal buttons -->
+    <div class="flex items-center center w-full mx-auto mb-9">
+      <button
+        class="w-64 h-11 mx-auto rounded-full bg-cyan-950 hover:bg-cyan-950 text-myTeal font-bold transition-all duration-200"
+        (click)="showPendingModal = false"
+      >
+        Check Transaction
+      </button>
+    </div>
+  </div>
+</app-modal>

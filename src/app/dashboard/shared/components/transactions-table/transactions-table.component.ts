@@ -1,30 +1,30 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalComponent } from '../modal/modal.component';
 
 @Component({
-  selector: 'app-paginated-table',
+  selector: 'app-transactions-table',
   standalone: true,
-  imports: [CommonModule, NgxPaginationModule, ModalComponent],
-  templateUrl: './paginated-table.component.html',
-  styleUrls: ['./paginated-table.component.scss']
+  imports: [CommonModule, NgxPaginationModule, ModalComponent, RouterModule],
+  templateUrl: './transactions-table.component.html',
+  styleUrls: ['./transactions-table.component.scss']
 })
-export class PaginatedTableComponent implements OnInit  {
+export class TransactionsTableComponent implements OnInit {
   @Input() selectedStatus: string = '';
   @Input() searchText: string = '';
   @Input() tableData: any[] = [] ;
 
-  // modal triggers
-  showPendingModal:boolean = false;
+   // modal triggers
+   showPendingModal:boolean = false;
 
-  closeModal(): void {
-    this.showPendingModal = false;
-  }
+   closeModal(): void {
+     this.showPendingModal = false;
+   }
 
-  
-  pagedTableData: any[] = []; // Array to hold the paginated data
-  
+   pagedTableData: any[] = []; // Array to hold the paginated data
+
 
   // Pagination settings
   config: any = {
@@ -48,5 +48,4 @@ export class PaginatedTableComponent implements OnInit  {
     const endIndex = startIndex + this.config.itemsPerPage;
     this.pagedTableData = this.tableData.slice(startIndex, endIndex);
   }
-
 }
