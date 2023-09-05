@@ -13,8 +13,10 @@ export class NavbarComponent {
   constructor(
     private router: Router
   ) {}
+  activeRoute:string ='';
 
   isRouteActive(routePath:string):boolean {
+    this.activeRoute = this.router.url
     return this.router.url == routePath
   }
 

@@ -2,11 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalComponent } from '../modal/modal.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-customers-table',
   standalone: true,
-  imports: [CommonModule, NgxPaginationModule, ModalComponent],
+  imports: [CommonModule, NgxPaginationModule, ModalComponent, RouterModule],
   templateUrl: './customers-table.component.html',
   styleUrls: ['./customers-table.component.scss']
 })

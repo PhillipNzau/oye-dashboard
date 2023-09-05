@@ -46,15 +46,15 @@
       <li
         routerLink="/customers"
         [ngClass]="{
-          'font-bold': isRouteActive('/customers')
+          'font-bold': activeRoute.includes('/customers')
         }"
         class="flex flex-col items-center group hover:cursor-pointer hover:font-bold w-20"
       >
         Customers
         <div
           [ngClass]="{
-            'bg-transparent': !isRouteActive('/customers'),
-            'bg-teal-700': isRouteActive('/customers')
+            'bg-transparent': !activeRoute.includes('/customers'),
+            'bg-teal-700': activeRoute.includes('/customers')
           }"
           class="-translate-y-[10%] group-hover:translate-y-[10%] group-hover:bg-teal-700 w-2.5 h-2.5 rounded-full transition-all duration-200"
         ></div>
