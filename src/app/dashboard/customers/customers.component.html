@@ -56,43 +56,45 @@
   </div>
 
   <!-- customer left stats -->
-  <div
-    class="md:grid grid-cols-2 bg-white rounded-xl w-full md:w-1/2 min-h-[272px]"
-  >
-    <div
-      class="border-b md:border-r border-myTeal flex items-center justify-center gap-7 p-12"
-    >
-      <img
-        src="../../../assets/images/customers.svg"
-        alt="average svg"
-        class="w-14 h-14"
-      />
-      <div class="">
-        <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
-          Total Customers
-        </p>
-        <p class="text-cyan-950 text-[28px] font-bold">12,000</p>
+  <div class="bg-white rounded-xl w-full md:w-1/2 min-h-[272px]">
+    <div class="md:grid grid-cols-2">
+      <div
+        class="border-b md:border-r border-myTeal flex items-center justify-center gap-7 p-12"
+      >
+        <img
+          src="../../../assets/images/customers.svg"
+          alt="average svg"
+          class="w-14 h-14"
+        />
+        <div class="">
+          <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
+            Total Customers
+          </p>
+          <p class="text-cyan-950 text-[28px] font-bold">12,000</p>
+        </div>
+      </div>
+
+      <div
+        class="border-b border-myTeal flex items-center justify-center gap-7 p-12"
+      >
+        <img
+          src="../../../assets/images/otherCustomers.svg"
+          alt="average svg"
+          class="w-14 h-14"
+        />
+        <div class="">
+          <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
+            Other Customers
+          </p>
+          <p class="text-cyan-950 text-[28px] font-bold">1,000</p>
+        </div>
       </div>
     </div>
 
-    <div
-      class="border-b border-myTeal flex items-center justify-center gap-7 p-12"
-    >
-      <img
-        src="../../../assets/images/otherCustomers.svg"
-        alt="average svg"
-        class="w-14 h-14"
-      />
-      <div class="">
-        <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
-          Other Customers
-        </p>
-        <p class="text-cyan-950 text-[28px] font-bold">1,000</p>
-      </div>
+    <!-- new customers chart -->
+    <div class="w-full md:p-6">
+      <h1 class="p-6 md:p-0 text-cyan-950 font-bold tex-xl">New Customers</h1>
+      <div [chart]="chart"></div>
     </div>
-
-    <div
-      class="border-b border-myTeal flex items-center justify-center gap-7 p-12"
-    ></div>
   </div>
 </section>

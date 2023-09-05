@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Chart, ChartModule } from 'angular-highcharts';
 import { CustomersTableComponent } from "../shared/components/customers-table/customers-table.component";
 
 @Component({
@@ -8,7 +9,7 @@ import { CustomersTableComponent } from "../shared/components/customers-table/cu
     standalone: true,
     templateUrl: './customers.component.html',
     styleUrls: ['./customers.component.scss'],
-    imports: [CommonModule, FormsModule, CustomersTableComponent]
+    imports: [CommonModule, FormsModule, CustomersTableComponent, ChartModule]
 })
 export class CustomersComponent implements OnInit {
   searchText: string = '';
@@ -35,6 +36,39 @@ export class CustomersComponent implements OnInit {
     },
 
   ];
+
+  // Charts
+  chart = new Chart({
+    chart: {
+      type: 'column'
+    },
+    title: {
+        text: ''
+    },
+    
+    credits: {
+      enabled: false
+    },
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar','Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      },
+      yAxis: {
+        title: {
+          text: 'Value',
+        },
+      },
+    series: [
+      {
+        name: 'Data',
+        data: [10, 5, 15, 8, 12, 20, 10,3,8,10,50,60],
+      } as any
+    ],
+    plotOptions: {
+      column: {
+        pointWidth: 30 // Adjust the width here as needed
+      }
+    },
+  });
 
   ngOnInit(): void {
     this.filteredTableData = this.tableData.slice();

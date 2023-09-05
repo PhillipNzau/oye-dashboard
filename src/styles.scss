@@ -20,5 +20,16 @@
       border-image-slice: 1;
     }
     
+  
   }
 
+  .highcharts-column-series {
+    // Your SCSS styles
+    path {
+        // Set the fill color using the variable
+        fill: #072E41 !important;
+    }
+}
+.highcharts-yaxis, .highcharts-yaxis-labels, .highcharts-legend, .highcharts-grid-line, .highcharts-axis-line   {
+    display: none !important;
+}
