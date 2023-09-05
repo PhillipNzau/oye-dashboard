@@ -1,11 +1,11 @@
 <!-- Header -->
 <section
-  class="flex items-center justify-between bg-cyan-950 h-32 mb-9 px-10 py-9"
+  class="flex flex-col items-center justify-center md:flex-row md:justify-between bg-cyan-950 md:h-32 mb-9 px-10 py-9"
 >
   <!-- Tab filter -->
   <div>
     <ul
-      class="flex items-center gap-5 border-b border-gradient py-4 text-myTeal"
+      class="flex flex-col md:flex-row items-center gap-10 md:gap-5 md:border-b border-gradient py-4 text-myTeal"
     >
       <li
         [ngClass]="{ 'font-bold': selectedStatus === 'all' }"
