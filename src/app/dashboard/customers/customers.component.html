@@ -44,10 +44,55 @@
 </section>
 
 <!-- table -->
-<section class="px-10 py-9">
-  <!-- <app-paginated-table
-    [selectedStatus]="selectedStatus"
-    [searchText]="searchText"
-    [tableData]="filteredTableData"
-  ></app-paginated-table> -->
+<section
+  class="px-6 md:px-10 py-9 flex items-start flex-wrap md:flex-nowrap justify-center md:justify-between gap-10"
+>
+  <!-- customers table -->
+  <div class="md:w-1/2 w-full">
+    <app-customers-table
+      [searchText]="searchText"
+      [tableData]="filteredTableData"
+    ></app-customers-table>
+  </div>
+
+  <!-- customer left stats -->
+  <div
+    class="md:grid grid-cols-2 bg-white rounded-xl w-full md:w-1/2 min-h-[272px]"
+  >
+    <div
+      class="border-b md:border-r border-myTeal flex items-center justify-center gap-7 p-12"
+    >
+      <img
+        src="../../../assets/images/customers.svg"
+        alt="average svg"
+        class="w-14 h-14"
+      />
+      <div class="">
+        <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
+          Total Customers
+        </p>
+        <p class="text-cyan-950 text-[28px] font-bold">12,000</p>
+      </div>
+    </div>
+
+    <div
+      class="border-b border-myTeal flex items-center justify-center gap-7 p-12"
+    >
+      <img
+        src="../../../assets/images/otherCustomers.svg"
+        alt="average svg"
+        class="w-14 h-14"
+      />
+      <div class="">
+        <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
+          Other Customers
+        </p>
+        <p class="text-cyan-950 text-[28px] font-bold">1,000</p>
+      </div>
+    </div>
+
+    <div
+      class="border-b border-myTeal flex items-center justify-center gap-7 p-12"
+    ></div>
+  </div>
 </section>

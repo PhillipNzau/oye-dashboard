@@ -26,7 +26,7 @@ export class PaginatedTableComponent implements OnInit  {
   pagedTableData: any[] = []; // Array to hold the paginated data
   
 
-    // Pagination settings
+  // Pagination settings
   config: any = {
     id: 'custom-pagination',
     itemsPerPage: 10,
@@ -48,6 +48,5 @@ export class PaginatedTableComponent implements OnInit  {
     const endIndex = startIndex + this.config.itemsPerPage;
     this.pagedTableData = this.tableData.slice(startIndex, endIndex);
   }
-
 
 }

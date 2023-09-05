@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CustomersTableComponent } from "../shared/components/customers-table/customers-table.component";
 
 @Component({
-  selector: 'app-customers',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss']
+    selector: 'app-customers',
+    standalone: true,
+    templateUrl: './customers.component.html',
+    styleUrls: ['./customers.component.scss'],
+    imports: [CommonModule, FormsModule, CustomersTableComponent]
 })
 export class CustomersComponent implements OnInit {
   searchText: string = '';
@@ -17,34 +18,20 @@ export class CustomersComponent implements OnInit {
     {
       title: '1',
       mobile: '123-456-7890',
-      amount: '$100',
-      airTimeForPayment: '10 days',
-      status: 'Pending',
-      airTimeStatus: 'Active',
       date: '2023-09-15',
       time: '14:30',
-      receiptNumber: '12345'
     },
     {
       title: '2',
       mobile: '987-654-3210',
-      amount: '$200',
-      airTimeForPayment: '5 days',
-      status: 'Paid',
-      airTimeStatus: 'Inactive',
       date: '2023-09-17',
       time: '10:00',
-      receiptNumber: '54321'
     },{
       title: '2',
       mobile: '987-654-3210',
       amount: '$200',
-      airTimeForPayment: '5 days',
-      status: 'Paid',
-      airTimeStatus: 'Submitted',
       date: '2023-09-17',
       time: '10:00',
-      receiptNumber: '54321'
     },
 
   ];
