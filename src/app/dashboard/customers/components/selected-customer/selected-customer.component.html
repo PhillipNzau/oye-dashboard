@@ -49,10 +49,10 @@
 >
   <!-- transactions table -->
   <div class="md:w-1/2 w-full">
-    <app-customers-table
-      [searchText]="searchText"
+    <app-transactions-table
       [tableData]="filteredTableData"
-    ></app-customers-table>
+      [searchText]="searchText"
+    ></app-transactions-table>
   </div>
 
   <!-- customer left stats -->

@@ -44,22 +44,18 @@ export class CustomersComponent implements OnInit {
  
 
 filterData() {
+  this.filteredTableData = this.tableData.slice();
 
-// Apply search filter
-if (this.searchText) {
-  const searchTextLower = this.searchText.toLowerCase();
-  this.filteredTableData = this.filteredTableData.filter(item =>
-    item.title.toLowerCase().includes(searchTextLower) ||
-    item.mobile.toLowerCase().includes(searchTextLower) ||
-    item.amount.toLowerCase().includes(searchTextLower) ||
-    item.airTimeForPayment.toLowerCase().includes(searchTextLower) ||
-    item.status.toLowerCase().includes(searchTextLower) ||
-    item.airTimeStatus.toLowerCase().includes(searchTextLower) ||
-    item.date.toLowerCase().includes(searchTextLower) ||
-    item.time.toLowerCase().includes(searchTextLower) ||
-    item.receiptNumber.toLowerCase().includes(searchTextLower)
-  );
-}
+  // Apply search filter
+  if (this.searchText) {
+    const searchTextLower = this.searchText.toLowerCase();
+    this.filteredTableData = this.filteredTableData.filter(item =>
+      item.title.toLowerCase().includes(searchTextLower) ||
+      item.mobile.toLowerCase().includes(searchTextLower) ||
+      item.date.toLowerCase().includes(searchTextLower) ||
+      item.time.toLowerCase().includes(searchTextLower)
+    );
+  }
 }
 
 }
