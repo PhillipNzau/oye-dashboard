@@ -62,9 +62,7 @@ export class PaginatedTableComponent implements OnInit  {
     if(tableLinks){
       const links:LinksModel = JSON.parse(tableLinks)
       this.nextPage = links.next
-      this.prevPage = links.prev
-      console.log('next',this.nextPage);
-      
+      this.prevPage = links.prev      
     } else {
 
     }
