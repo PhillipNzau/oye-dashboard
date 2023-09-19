@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalComponent } from '../modal/modal.component';
+import { TransactionModel } from 'src/app/auth/models/transactionModel';
 
 @Component({
   selector: 'app-paginated-table',
@@ -13,7 +14,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class PaginatedTableComponent implements OnInit  {
   @Input() selectedStatus: string = '';
   @Input() searchText: string = '';
-  @Input() tableData: any[] = [] ;
+  @Input() tableData: TransactionModel[] = [] ;
 
   // modal triggers
   showPendingModal:boolean = false;

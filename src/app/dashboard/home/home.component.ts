@@ -4,6 +4,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginatedTableComponent } from "../shared/components/paginated-table/paginated-table.component";
 import { UserRes } from 'src/app/auth/models/login';
 import { HotToastService } from '@ngneat/hot-toast';
+import { TransactionEntityService } from '../shared/ngrx-store/transaction/transaction.entity.service';
+import { TransactionModel } from 'src/app/auth/models/transactionModel';
 
 @Component({
     selector: 'app-home',
@@ -15,8 +17,9 @@ import { HotToastService } from '@ngneat/hot-toast';
 export class HomeComponent implements OnInit {
     user: UserRes | undefined;
     filteredTableData: any[] = [];
+    tableData: TransactionModel[] = []
 
-    tableData: any[] = [
+    tableData2: any[] = [
         {
           title: '1',
           mobile: '123-456-7890',
@@ -54,7 +57,7 @@ export class HomeComponent implements OnInit {
 
     constructor(
     private toastService: HotToastService,
-
+    private transactionService: TransactionEntityService
     ){}
 
     ngOnInit(): void {
@@ -65,6 +68,19 @@ export class HomeComponent implements OnInit {
       } else {
         this.toastService.error(`User not found!`) 
       }
+      this.getTransactions()
+    }
+
+    getTransactions(){
+      this.transactionService.entities$.subscribe({
+        next:(res) => {
+          this.tableData = res
+          console.log('res home', res);
+        },
+        error:(err)=> {
+          console.log("Error", err);
+        },
+      })
     }
  
 
