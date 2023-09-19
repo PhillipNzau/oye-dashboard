@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginatedTableComponent } from "../shared/components/paginated-table/paginated-table.component";
 import { UserRes } from 'src/app/auth/models/login';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -16,51 +15,15 @@ import { TransactionModel } from 'src/app/auth/models/transactionModel';
 })
 export class HomeComponent implements OnInit {
     user: UserRes | undefined;
-    filteredTableData: any[] = [];
     tableData: TransactionModel[] = []
-
-    tableData2: any[] = [
-        {
-          title: '1',
-          mobile: '123-456-7890',
-          amount: '$100',
-          airTimeForPayment: '10 days',
-          status: 'Pending',
-          airTimeStatus: 'Active',
-          date: '2023-09-15',
-          time: '14:30',
-          receiptNumber: '12345'
-        },
-        {
-          title: '2',
-          mobile: '987-654-3210',
-          amount: '$200',
-          airTimeForPayment: '5 days',
-          status: 'Paid',
-          airTimeStatus: 'Inactive',
-          date: '2023-09-17',
-          time: '10:00',
-          receiptNumber: '54321'
-        },{
-          title: '2',
-          mobile: '987-654-3210',
-          amount: '$200',
-          airTimeForPayment: '5 days',
-          status: 'Paid',
-          airTimeStatus: 'Submitted',
-          date: '2023-09-17',
-          time: '10:00',
-          receiptNumber: '54321'
-        },
-    
-    ];
-
+    isLoading:boolean = true;
     constructor(
     private toastService: HotToastService,
     private transactionService: TransactionEntityService
     ){}
 
     ngOnInit(): void {
+      // get and parse user from local Storage
       const loggedInUser = localStorage.getItem('oydUsr')
       if(loggedInUser) {
         this.user=JSON.parse(loggedInUser)
@@ -68,17 +31,29 @@ export class HomeComponent implements OnInit {
       } else {
         this.toastService.error(`User not found!`) 
       }
+
+      // call get transactions
       this.getTransactions()
     }
 
+    // get transactions table data from ngrx store
     getTransactions(){
+      if(this.tableData.length < 1) {
+        this.isLoading = true;        
+      }
+      
       this.transactionService.entities$.subscribe({
         next:(res) => {
           this.tableData = res
-          console.log('res home', res);
+          if(this.tableData.length > 0) {
+            this.isLoading = false;        
+          }
         },
         error:(err)=> {
           console.log("Error", err);
+          if(this.tableData.length > 0) {
+            this.isLoading = false;        
+          }
         },
       })
     }

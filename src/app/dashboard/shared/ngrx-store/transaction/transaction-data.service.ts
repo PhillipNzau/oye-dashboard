@@ -25,7 +25,6 @@ export class TransactionDataService extends DefaultDataService<any> {
     override getAll(options?: HttpOptions | undefined): Observable<any[]> {
         return this.http.get<TransactionResModel[]>(this.transactionUrl).pipe(
             map((transaction: TransactionResModel[]) => {
-                console.log('transactions', transaction);
                 if(transaction) {
                     // @ts-ignore
                     localStorage.setItem('links', JSON.stringify(transaction.links))
