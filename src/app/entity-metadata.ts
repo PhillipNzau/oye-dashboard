@@ -6,6 +6,7 @@ const entityMetadata: EntityMetadataMap = {
     User: {
     selectId: (entity) => entity.id.id,
   },*/
+  Transaction:{},
 };
 
 const pluralNames = {  };
