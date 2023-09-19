@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '', 
     loadChildren:() => import('./dashboard/dashboard.routes').then(mod => mod.DASHBOARD_ROUTES),
-    // canActivate:[() => inject(AuthService).isLoggedIn],
+    canActivate:[() => inject(AuthService).isLoggedIn],
     // resolve: {
     //   user: UserResolver
     // }

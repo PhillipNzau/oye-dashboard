@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Router } from '@angular/router';
-import { Login, LoginRes } from '../models/login';
+import { Login, LoginRes, LoginResModel } from '../models/login';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +19,15 @@ export class AuthService {
    private route:Router
   ) { }
 
-  add(loginData:Login) {
-    return this.http.post<LoginRes>(this.loginUrl, loginData).pipe(
-      map((res:LoginRes) => {
-        if(res.token) {
-          localStorage.setItem('pdTkn', res.token);
-          localStorage.setItem('pdRTkn', res.refreshToken);
-          localStorage.setItem('pdScp', res.scope);
+  login(loginData:Login) {
+    return this.http.post<LoginResModel>(this.loginUrl, loginData).pipe(
+      map((res:LoginResModel) => {
+        const response = res.data
+        
+        if(response.access_token) {
+          localStorage.setItem('oydTkn', response.access_token);
+          localStorage.setItem('oydRTkn', response.refresh_token);
+          localStorage.setItem('oydExp', response.expires_in);
 
           this.route.navigate(['/']).then(() => {})
         } else {
@@ -42,7 +44,7 @@ export class AuthService {
 
   // Returns true when user is loged in and email is verified
   get isLoggedIn() {
-    this.loggedIn = !!localStorage.getItem('pdTkn');
+    this.loggedIn = !!localStorage.getItem('oydTkn');
 
     if (!this.loggedIn) {
      return this.route.navigate(['/auth']).then(() => {})
