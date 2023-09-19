@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginatedTableComponent } from "../shared/components/paginated-table/paginated-table.component";
+import { UserRes } from 'src/app/auth/models/login';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
     selector: 'app-home',
@@ -10,10 +12,11 @@ import { PaginatedTableComponent } from "../shared/components/paginated-table/pa
     styleUrls: ['./home.component.scss'],
     imports: [CommonModule,PaginatedTableComponent]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+    user: UserRes | undefined;
     filteredTableData: any[] = [];
 
-      tableData: any[] = [
+    tableData: any[] = [
         {
           title: '1',
           mobile: '123-456-7890',
@@ -47,7 +50,22 @@ export class HomeComponent {
           receiptNumber: '54321'
         },
     
-      ];
+    ];
+
+    constructor(
+    private toastService: HotToastService,
+
+    ){}
+
+    ngOnInit(): void {
+      const loggedInUser = localStorage.getItem('oydUsr')
+      if(loggedInUser) {
+        this.user=JSON.parse(loggedInUser)
+        this.toastService.success(`Welcome ${this.user?.first_name}!`) 
+      } else {
+        this.toastService.error(`User not found!`) 
+      }
+    }
  
 
 }

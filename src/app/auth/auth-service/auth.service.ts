@@ -23,11 +23,13 @@ export class AuthService {
     return this.http.post<LoginResModel>(this.loginUrl, loginData).pipe(
       map((res:LoginResModel) => {
         const response = res.data
+        const userResponse = res.user
         
         if(response.access_token) {
           localStorage.setItem('oydTkn', response.access_token);
           localStorage.setItem('oydRTkn', response.refresh_token);
           localStorage.setItem('oydExp', response.expires_in);
+          localStorage.setItem('oydUsr', JSON.stringify(userResponse));
 
           this.route.navigate(['/']).then(() => {})
         } else {

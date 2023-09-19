@@ -57,8 +57,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginData).subscribe({
       next: () => { 
         loadingToast.close();
-
-        this.toastService.success('Welcome!');
       },
       error:(err:any) => {
         loadingToast.close();
