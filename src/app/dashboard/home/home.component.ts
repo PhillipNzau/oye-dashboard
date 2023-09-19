@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     user: UserRes | undefined;
     tableData: TransactionModel[] = []
     isLoading:boolean = true;
+    
     constructor(
     private toastService: HotToastService,
     private transactionService: TransactionEntityService

@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalComponent } from '../modal/modal.component';
-import { TransactionModel } from 'src/app/auth/models/transactionModel';
+import { LinksModel, MetaModel, TransactionModel } from 'src/app/auth/models/transactionModel';
+import { TransactionEntityService } from '../../ngrx-store/transaction/transaction.entity.service';
 
 @Component({
   selector: 'app-paginated-table',
@@ -16,8 +17,20 @@ export class PaginatedTableComponent implements OnInit  {
   @Input() searchText: string = '';
   @Input() tableData: TransactionModel[] = [] ;
 
+  // pagination data fom api
+  links:string = '';
+  currentPage : number | undefined;
+  nextPage: any;
+  prevPage: string | undefined;
+  lastPage: number | undefined;
+  totalPages:number| undefined;
+
   // modal triggers
   showPendingModal:boolean = false;
+
+  constructor(
+    private transactionService: TransactionEntityService
+  ){}
 
   closeModal(): void {
     this.showPendingModal = false;
@@ -30,16 +43,37 @@ export class PaginatedTableComponent implements OnInit  {
   // Pagination settings
   config: any = {
     id: 'custom-pagination',
-    itemsPerPage: 10,
+    itemsPerPage: 9,
     currentPage: 1
   };
 
   ngOnInit() {
+    const tableLinks = localStorage.getItem('links')
+    const tableMeta = localStorage.getItem('meta')
+    if(tableMeta) {
+      const meta:MetaModel =JSON.parse(tableMeta)
+      this.currentPage = meta.current_page      
+      this.lastPage= meta.last_page
+      this.totalPages=meta.total
+    } else {
+      // this.toastService.error(`User not found!`) 
+    }
+
+    if(tableLinks){
+      const links:LinksModel = JSON.parse(tableLinks)
+      this.nextPage = links.next
+      this.prevPage = links.prev
+      console.log('next',this.nextPage);
+      
+    } else {
+
+    }
     // Initially, set filtered data to be the same as tableData
     this.loadPageData();
   }
 
   onPageChange(page: number) {
+    this.getNextPageData()
     this.config.currentPage = page;
     this.loadPageData();
   }
@@ -50,4 +84,14 @@ export class PaginatedTableComponent implements OnInit  {
     this.pagedTableData = this.tableData.slice(startIndex, endIndex);
   }
 
+  // get next page data
+  getNextPageData() {
+    this.transactionService.getWithQuery(this.nextPage).subscribe({
+      next:(data:any)=> {      
+      },
+      error:()=> {
+
+      }
+    });
+  }
 }

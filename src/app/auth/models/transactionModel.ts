@@ -19,7 +19,8 @@ export interface TransactionModel {
 export interface LinksModel {
     first: string,
     last:string,
-    next: string,
+    next?: string,
+    prev?:string,
 }
 
 export interface MetaModel {

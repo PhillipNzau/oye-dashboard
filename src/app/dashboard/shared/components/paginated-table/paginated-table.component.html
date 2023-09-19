@@ -95,8 +95,7 @@
   <div class="flex items-center justify-between px-4 md:px-6">
     <p class="text-cyan-950 text-sm">
       Showing {{ (config.currentPage - 1) * config.itemsPerPage + 1 }} to
-      {{ config.currentPage * config.itemsPerPage }} of
-      {{ tableData.length }} entries
+      {{ config.currentPage * config.itemsPerPage }} of {{ totalPages }} entries
     </p>
 
     <pagination-controls
