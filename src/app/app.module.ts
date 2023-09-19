@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EntityDataModule, EntityDataService } from '@ngrx/data';
@@ -18,6 +18,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './auth/auth-service/auth.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TransactionDataService } from './dashboard/shared/ngrx-store/transaction/transaction-data.service';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 
 @NgModule({
@@ -46,14 +48,17 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   providers: [
     AuthService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(
     entityDataService:EntityDataService,
+    TransactionService: TransactionDataService,
     // UserService:UserDataService,
     ){
+      entityDataService.registerServices({'Transaction':TransactionService})
       /* 
       entityDataService.registerServices({'User': UserService})
       */

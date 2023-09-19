@@ -32,61 +32,61 @@
         *ngFor="let item of tableData | paginate : config"
         class="text-center text-cyan-950 border-b border-slate-400"
       >
-        <td class="p-2">{{ item.title }}</td>
+        <td class="p-2">{{ item.id }}</td>
         <td class="p-2">{{ item.mobile }}</td>
         <td class="p-2">{{ item.amount }}</td>
-        <td class="p-2">{{ item.airTimeForPayment }}</td>
+        <td class="p-2">{{ item.airtime_for }}</td>
         <td class="p-2">
           <!-- paid status -->
           <div
-            *ngIf="item.status == 'Paid'"
+            *ngIf="item.payment_status == 'SUCCESS'"
             class="flex items-center justify-center gap-2 text-green-400"
           >
             <div class="w-2 h-2 rounded-full bg-green-400"></div>
-            {{ item.status }}
+            {{ item.payment_status }}
           </div>
 
           <!-- pending status -->
           <div
-            *ngIf="item.status == 'Pending'"
+            *ngIf="item.payment_status == 'PENDING'"
             class="flex items-center justify-center gap-2 text-red-600"
             (click)="showPendingModal = true"
           >
             <div class="w-2 h-2 rounded-full bg-red-600"></div>
-            {{ item.status }}
+            {{ item.payment_status }}
           </div>
         </td>
         <td class="p-2">
           <!-- active status -->
           <div
-            *ngIf="item.airTimeStatus == 'Active'"
+            *ngIf="item.airtime_status == 'SUCCESS'"
             class="flex items-center justify-center gap-2 text-green-400"
           >
             <div class="w-2 h-2 rounded-full bg-green-400"></div>
-            {{ item.airTimeStatus }}
+            {{ item.airtime_status }}
           </div>
 
           <!-- Inactive status -->
           <div
-            *ngIf="item.airTimeStatus == 'Inactive'"
+            *ngIf="item.airtime_status == 'FAILED'"
             class="flex items-center justify-center gap-2 text-red-600"
           >
             <div class="w-2 h-2 rounded-full bg-red-600"></div>
-            {{ item.airTimeStatus }}
+            {{ item.airtime_status }}
           </div>
 
           <!-- Submitted status -->
           <div
-            *ngIf="item.airTimeStatus == 'Submitted'"
+            *ngIf="item.airtime_status == 'PENDING'"
             class="flex items-center justify-center gap-2 text-violet-700"
           >
             <div class="w-2 h-2 rounded-full bg-violet-700"></div>
-            {{ item.airTimeStatus }}
+            {{ item.airtime_status }}
           </div>
         </td>
         <td class="p-2">{{ item.date }}</td>
         <td class="p-2">{{ item.time }}</td>
-        <td class="p-2">{{ item.receiptNumber }}</td>
+        <td class="p-2">{{ item.receipt_number }}</td>
       </tr>
     </tbody>
   </table>
@@ -95,8 +95,7 @@
   <div class="flex items-center justify-between px-4 md:px-6">
     <p class="text-cyan-950 text-sm">
       Showing {{ (config.currentPage - 1) * config.itemsPerPage + 1 }} to
-      {{ config.currentPage * config.itemsPerPage }} of
-      {{ tableData.length }} entries
+      {{ config.currentPage * config.itemsPerPage }} of {{ totalPages }} entries
     </p>
 
     <pagination-controls

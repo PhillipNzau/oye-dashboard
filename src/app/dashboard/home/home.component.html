@@ -2,7 +2,9 @@
 <section
   class="text-center md:text-start md:relative bg-cyan-950 md:h-56 px-5 md:px-10 py-9 md:mb-24"
 >
-  <h1 class="text-myTeal text-xl font-normal mb-5">Welcome back, Kevin</h1>
+  <h1 class="text-myTeal text-xl font-normal mb-5">
+    Welcome back, {{ user?.first_name }}
+  </h1>
 
   <!-- Cards -->
   <div
@@ -76,7 +78,19 @@
   </div>
 </section>
 
+<!-- data table -->
 <section class="px-5 py-4 md:px-10 md:py-9">
-  <!-- data table -->
-  <app-paginated-table [tableData]="tableData"></app-paginated-table>
+  <!-- show loading animation -->
+  <div *ngIf="isLoading" class="w-16 mx-auto relative">
+    <p
+      class="w-16 h-16 border-t-4 border-cyan-950 border-solid rounded-full animate-spin"
+    ></p>
+    <p class="text-cyan-950 py-2">Loading...</p>
+  </div>
+
+  <!-- Show table data -->
+  <app-paginated-table
+    *ngIf="!isLoading"
+    [tableData]="tableData"
+  ></app-paginated-table>
 </section>

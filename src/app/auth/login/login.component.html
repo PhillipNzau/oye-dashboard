@@ -14,7 +14,7 @@
       <label>
         <input
           type="email"
-          formControlName="username"
+          formControlName="user_name"
           id="email"
           placeholder="Email"
           class="border rounded-lg w-full h-14 px-6 placeholder-neutral-300 text-neutral-300 bg-transparent text-base font-medium outline-none focus:border-blue-900 transition-all duration-200"
@@ -22,9 +22,9 @@
         <div
           class="text-red-600 mt-1"
           *ngIf="
-            loginForm.controls['username'].hasError('required') &&
-            (loginForm.controls['username'].dirty ||
-              loginForm.controls['username'].touched)
+            loginForm.controls['user_name'].hasError('required') &&
+            (loginForm.controls['user_name'].dirty ||
+              loginForm.controls['user_name'].touched)
           "
         >
           Email is required.
@@ -32,8 +32,8 @@
         <div
           class="text-red-600 mt-1"
           *ngIf="
-            loginForm.controls['username'].hasError('email') &&
-            loginForm.controls['username'].touched
+            loginForm.controls['user_name'].hasError('email') &&
+            loginForm.controls['user_name'].touched
           "
         >
           Email is invalid.

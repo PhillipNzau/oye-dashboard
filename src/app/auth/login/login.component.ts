@@ -26,7 +26,9 @@ export class LoginComponent implements OnInit {
     private route: Router
   ) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email]],
+      // username: ['', [Validators.required]],
+      // email: ['', [Validators.required, Validators.email]],
+      user_name: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4)]]
     });
     this.resetPwdForm = this.fb.group({
@@ -35,10 +37,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.toastService.success('Welcome!');
+    // this.toastService.success('Welcome!');
 
     // Check if user is logged in, if user is logged in redirect to home page
-    // !!localStorage.getItem('pdTkn') ? this.route.navigate(['/']).then(() => {}) : null 
+    !!localStorage.getItem('oydTkn') ? this.route.navigate(['/']).then(() => {}) : null 
   }
   
   toggleForgot() {
@@ -52,11 +54,9 @@ export class LoginComponent implements OnInit {
     const loginData: Login = {
       ...this.loginForm.value
     }
-    this.authService.add(loginData).subscribe({
+    this.authService.login(loginData).subscribe({
       next: () => { 
         loadingToast.close();
-
-        this.toastService.success('Welcome!');
       },
       error:(err:any) => {
         loadingToast.close();
