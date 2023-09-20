@@ -31,7 +31,6 @@ export class SelectedCustomerComponent implements OnInit {
     this.selectedCustomerService.getCustomer('738595899').subscribe({
       next: (data:any) => {
         this.tableData= data;
-        console.log(this.tableData);
         
         this.filteredTableData = this.tableData.slice();
       },

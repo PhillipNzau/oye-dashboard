@@ -5,6 +5,8 @@ import { UserRes } from 'src/app/auth/models/login';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TransactionEntityService } from '../shared/ngrx-store/transaction/transaction.entity.service';
 import { TransactionModel } from 'src/app/auth/models/transactionModel';
+import { TransactionDashboardService } from '../shared/services/transaction-dashboard.service';
+import { DashboardModel } from '../shared/models/dashboardModel';
 
 @Component({
     selector: 'app-home',
@@ -17,10 +19,15 @@ export class HomeComponent implements OnInit {
     user: UserRes | undefined;
     tableData: TransactionModel[] = []
     isLoading:boolean = true;
+    total_sales:number | undefined;
+    average_purchase: number | undefined;
+    customers:number | undefined;
+    balance:number | undefined;
     
     constructor(
     private toastService: HotToastService,
-    private transactionService: TransactionEntityService
+    private transactionService: TransactionEntityService,
+    private dashboardService: TransactionDashboardService,
     ){}
 
     ngOnInit(): void {
@@ -34,6 +41,9 @@ export class HomeComponent implements OnInit {
 
       // call get transactions
       this.getTransactions()
+
+      // call dasboard data
+      this.getDashboardData()
     }
 
     // get transactions table data from ngrx store
@@ -55,6 +65,24 @@ export class HomeComponent implements OnInit {
             this.isLoading = false;        
           }
         },
+      })
+    }
+
+    // get dashboard data
+    getDashboardData() {
+      this.dashboardService.getDashboardData().subscribe({
+        next: (data:DashboardModel) => {
+          this.total_sales = data.total_sales;
+          this.average_purchase = data.average_purchase;
+          this.balance = data.balance;
+          this.customers = data.customers;
+          
+
+        },
+        error: (error) => {
+          console.log('err', error);
+          
+        }
       })
     }
  
