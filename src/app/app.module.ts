@@ -20,6 +20,7 @@ import { AuthService } from './auth/auth-service/auth.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TransactionDataService } from './dashboard/shared/ngrx-store/transaction/transaction-data.service';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { CustomerDataService } from './dashboard/shared/ngrx-store/customer/customer-data.service';
 
 
 @NgModule({
@@ -56,9 +57,11 @@ export class AppModule {
   constructor(
     entityDataService:EntityDataService,
     TransactionService: TransactionDataService,
+    CustomerService: CustomerDataService,
     // UserService:UserDataService,
     ){
       entityDataService.registerServices({'Transaction':TransactionService})
+      entityDataService.registerServices({'Customer':CustomerService})
       /* 
       entityDataService.registerServices({'User': UserService})
       */
