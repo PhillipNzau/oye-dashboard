@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './auth/auth-service/auth.service';
 import { LoginComponent } from './auth/login/login.component';
 import { TransactionResolver } from './dashboard/shared/resolver/transaction.resolver';
-import { CustomerResolver } from './dashboard/shared/resolver/customer.resolver';
 
 const routes: Routes = [
   {
@@ -12,7 +11,6 @@ const routes: Routes = [
     canActivate:[() => inject(AuthService).isLoggedIn],
     resolve: {
       transaction: TransactionResolver,
-      customer: CustomerResolver,
     }
   },
   {
