@@ -49,7 +49,16 @@
 >
   <!-- customers table -->
   <div class="md:w-1/2 w-full">
+    <!-- show loading animation -->
+    <div *ngIf="isLoading" class="w-16 mx-auto relative">
+      <p
+        class="w-16 h-16 border-t-4 border-cyan-950 border-solid rounded-full animate-spin"
+      ></p>
+      <p class="text-cyan-950 py-2">Loading...</p>
+    </div>
+
     <app-customers-table
+      *ngIf="!isLoading"
       [searchText]="searchText"
       [tableData]="filteredTableData"
     ></app-customers-table>

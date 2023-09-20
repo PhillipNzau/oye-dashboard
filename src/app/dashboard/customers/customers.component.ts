@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Chart, ChartModule } from 'angular-highcharts';
 import { CustomersTableComponent } from "../shared/components/customers-table/customers-table.component";
+import { CustomerEntityService } from '../shared/ngrx-store/customer/customer.entity.service';
+import { CustomerModel } from 'src/app/auth/models/customersModel';
 
 @Component({
     selector: 'app-customers',
@@ -12,30 +14,11 @@ import { CustomersTableComponent } from "../shared/components/customers-table/cu
     imports: [CommonModule, FormsModule, CustomersTableComponent, ChartModule]
 })
 export class CustomersComponent implements OnInit {
+  isLoading:boolean = true;
+  tableData: CustomerModel[] = [];
+
   searchText: string = '';
   filteredTableData: any[] = [];
-
-  tableData: any[] = [
-    {
-      title: '1',
-      mobile: '123-456-7890',
-      date: '2023-09-15',
-      time: '14:30',
-    },
-    {
-      title: '2',
-      mobile: '987-654-3210',
-      date: '2023-09-17',
-      time: '10:00',
-    },{
-      title: '2',
-      mobile: '987-654-3210',
-      amount: '$200',
-      date: '2023-09-17',
-      time: '10:00',
-    },
-
-  ];
 
   // Charts
   chart = new Chart({
@@ -70,10 +53,42 @@ export class CustomersComponent implements OnInit {
     },
   });
 
+  constructor(
+    private customerService: CustomerEntityService
+  ){}
+
   ngOnInit(): void {
-    this.filteredTableData = this.tableData.slice();
+
+    // get customers
+    this.getCustomers()
 
   }
+
+    // get customers table data from ngrx store
+    getCustomers(){
+      if(this.tableData.length < 1) {
+        this.isLoading = true;        
+      }
+      
+      this.customerService.entities$.subscribe({
+        next:(res) => {
+          console.log('customer', res);
+          
+          this.tableData = res
+          this.filteredTableData = this.tableData.slice();
+
+          if(this.tableData.length > 0) {
+            this.isLoading = false;        
+          }
+        },
+        error:(err)=> {
+          console.log("Error", err);
+          if(this.tableData.length > 0) {
+            this.isLoading = false;        
+          }
+        },
+      })
+    }
 
  
 
@@ -84,7 +99,6 @@ filterData() {
   if (this.searchText) {
     const searchTextLower = this.searchText.toLowerCase();
     this.filteredTableData = this.filteredTableData.filter(item =>
-      item.title.toLowerCase().includes(searchTextLower) ||
       item.mobile.toLowerCase().includes(searchTextLower) ||
       item.date.toLowerCase().includes(searchTextLower) ||
       item.time.toLowerCase().includes(searchTextLower)
