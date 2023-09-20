@@ -72,7 +72,6 @@ export class CustomersComponent implements OnInit {
       
       this.customerService.entities$.subscribe({
         next:(res) => {
-          console.log('customer', res);
           
           this.tableData = res
           this.filteredTableData = this.tableData.slice();

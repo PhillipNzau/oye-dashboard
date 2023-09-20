@@ -4,6 +4,7 @@ export const environment = {
 
     // User Urls
     loginUrl: baseUrl + '/login',
+    refreshUrl: baseUrl + '/refresh/token',
     transactionUrl: baseUrl + '/topups/list',
     customersUrl: baseUrl + '/topups/customers',
 

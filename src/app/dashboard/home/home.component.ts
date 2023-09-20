@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
       const loggedInUser = localStorage.getItem('oydUsr')
       if(loggedInUser) {
         this.user=JSON.parse(loggedInUser)
-        this.toastService.success(`Welcome ${this.user?.first_name}!`) 
       } else {
         this.toastService.error(`User not found!`) 
       }

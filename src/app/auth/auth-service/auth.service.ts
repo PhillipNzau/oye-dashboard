@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Router } from '@angular/router';
 import { Login, LoginRes, LoginResModel } from '../models/login';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,15 @@ import { Login, LoginRes, LoginResModel } from '../models/login';
 export class AuthService {
   private loggedIn = false;
   loginUrl = environment.loginUrl;
+  refreshUrl = environment.refreshUrl;
   logoutUrl = environment.loginUrl
 
 
   constructor(
    private http: HttpClient,
-   private route:Router
+   private route:Router,
+   private toastService: HotToastService,
+
   ) { }
 
   login(loginData:Login) {
@@ -30,6 +34,7 @@ export class AuthService {
           localStorage.setItem('oydRTkn', response.refresh_token);
           localStorage.setItem('oydExp', response.expires_in);
           localStorage.setItem('oydUsr', JSON.stringify(userResponse));
+          this.toastService.success(`Welcome ${userResponse?.first_name}!`) 
 
           this.route.navigate(['/']).then(() => {})
         } else {
@@ -52,6 +57,23 @@ export class AuthService {
      return this.route.navigate(['/auth']).then(() => {})
     }
     return this.loggedIn;
+  }
+
+  refreshToken(refreshToken:string | null) {
+    const refresh = {
+      refresh_token: refreshToken
+    }
+    return this.http.post<any>(this.refreshUrl, refresh).pipe(
+      map((res:any)=> {
+        if(res.data.access_token) {
+          localStorage.setItem('oydTkn', res.data.access_token);
+          localStorage.setItem('oydRTkn', res.data.refresh_token);
+          localStorage.setItem('oydExp', res.data.expires_in);
+        }
+        
+      })
+    )
+    
   }
 
 }
