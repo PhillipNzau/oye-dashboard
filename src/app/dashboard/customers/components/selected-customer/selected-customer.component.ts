@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CustomersTableComponent } from 'src/app/dashboard/shared/components/customers-table/customers-table.component';
 import { TransactionsTableComponent } from "../../../shared/components/transactions-table/transactions-table.component";
+import { SelectedCustomerService } from 'src/app/dashboard/shared/services/selected-customer.service';
 
 @Component({
     selector: 'app-selected-customer',
@@ -42,8 +43,26 @@ export class SelectedCustomerComponent implements OnInit {
 
   ];
 
+  constructor(
+    private selectedCustomerService: SelectedCustomerService
+  ){}
+
   ngOnInit(): void {
     this.filteredTableData = this.tableData.slice();
+    this.getCustomerTransactions()
+  }
+
+  getCustomerTransactions() {
+    this.selectedCustomerService.getCustomer('738595899').subscribe({
+      next: (data:any) => {
+        console.log('data', data);
+        
+      },
+      error: (error) => {
+        console.log('err', error);
+        
+      }
+    })
   }
 
 
