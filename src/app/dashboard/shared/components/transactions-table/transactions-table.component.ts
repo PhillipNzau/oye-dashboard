@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalComponent } from '../modal/modal.component';
+import { TransactionModel } from 'src/app/auth/models/transactionModel';
 
 @Component({
   selector: 'app-transactions-table',
@@ -14,7 +15,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class TransactionsTableComponent implements OnInit {
   @Input() selectedStatus: string = '';
   @Input() searchText: string = '';
-  @Input() tableData: any[] = [] ;
+  @Input() tableData: TransactionModel[] = [] ;
 
    // modal triggers
    showPendingModal:boolean = false;
