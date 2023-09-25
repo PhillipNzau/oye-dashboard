@@ -55,6 +55,16 @@
             <div class="w-2 h-2 rounded-full bg-red-600"></div>
             {{ item.payment_status }}
           </div>
+
+          <!-- failed status -->
+          <div
+            *ngIf="item.payment_status == 'FAILED'"
+            class="flex items-center justify-center gap-2 text-violet-700"
+            (click)="showPendingModal = true"
+          >
+            <div class="w-2 h-2 rounded-full bg-violet-700"></div>
+            {{ item.payment_status }}
+          </div>
         </td>
         <td class="p-2">
           <!-- active status -->
