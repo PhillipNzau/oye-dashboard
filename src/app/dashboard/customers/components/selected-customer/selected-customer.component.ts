@@ -5,6 +5,7 @@ import { CustomersTableComponent } from 'src/app/dashboard/shared/components/cus
 import { TransactionsTableComponent } from "../../../shared/components/transactions-table/transactions-table.component";
 import { SelectedCustomerService } from 'src/app/dashboard/shared/services/selected-customer.service';
 import { TransactionModel } from 'src/app/auth/models/transactionModel';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-selected-customer',
@@ -20,15 +21,19 @@ export class SelectedCustomerComponent implements OnInit {
   tableData: TransactionModel[]=[];
 
   constructor(
-    private selectedCustomerService: SelectedCustomerService
+    private selectedCustomerService: SelectedCustomerService,
+    private route: ActivatedRoute
   ){}
 
   ngOnInit(): void {
-    this.getCustomerTransactions()
+    const id = this.route.snapshot.paramMap.get('id');
+    
+    if(id) this.getCustomerTransactions(id)
+
   }
 
-  getCustomerTransactions() {
-    this.selectedCustomerService.getCustomer('738595899').subscribe({
+  getCustomerTransactions(id:string) {
+    this.selectedCustomerService.getCustomer(id).subscribe({
       next: (data:any) => {
         this.tableData= data;
         
