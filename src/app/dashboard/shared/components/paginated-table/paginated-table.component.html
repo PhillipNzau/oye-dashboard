@@ -49,20 +49,20 @@
           <!-- pending status -->
           <div
             *ngIf="item.payment_status == 'PENDING'"
-            class="flex items-center justify-center gap-2 text-red-600"
+            class="flex items-center justify-center gap-2 text-violet-700"
             (click)="showPendingModal = true"
           >
-            <div class="w-2 h-2 rounded-full bg-red-600"></div>
+            <div class="w-2 h-2 rounded-full bg-violet-700"></div>
             {{ item.payment_status }}
           </div>
 
           <!-- failed status -->
           <div
             *ngIf="item.payment_status == 'FAILED'"
-            class="flex items-center justify-center gap-2 text-violet-700"
+            class="flex items-center justify-center gap-2 text-red-600"
             (click)="showPendingModal = true"
           >
-            <div class="w-2 h-2 rounded-full bg-violet-700"></div>
+            <div class="w-2 h-2 rounded-full bg-red-600"></div>
             {{ item.payment_status }}
           </div>
         </td>
