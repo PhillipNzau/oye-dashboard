@@ -1,6 +1,7 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth-service/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,10 +11,12 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent  implements OnInit{
+
   @Output() triggerMenu: EventEmitter<boolean> = new EventEmitter<boolean>();
   isSmallScreen: boolean = false;
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
   activeRoute:string ='';
 
@@ -40,6 +43,11 @@ export class NavbarComponent  implements OnInit{
   isRouteActive(routePath:string):boolean {
     this.activeRoute = this.router.url
     return this.router.url == routePath
+  }
+
+  logoutUser() {
+    this.authService.logoutUser()
+  
   }
 
 }

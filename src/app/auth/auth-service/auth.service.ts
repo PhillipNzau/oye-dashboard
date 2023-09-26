@@ -45,8 +45,12 @@ export class AuthService {
 
   }
 
-  logoutUser(logout:string) {
-    return  localStorage.clear()
+  logoutUser() {
+    localStorage.clear()
+    this.route.navigate(['/auth']).then(() => {});
+    this.toastService.success(`Logged out success!`) 
+
+    return
   }
 
   // Returns true when user is loged in and email is verified

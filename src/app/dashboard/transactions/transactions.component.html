@@ -10,7 +10,7 @@
       <li
         [ngClass]="{ 'font-bold': selectedStatus === 'all' }"
         (click)="selectItem('all')"
-        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-36 text-center"
+        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
       >
         All Transactions
         <div
@@ -24,9 +24,9 @@
       <li
         [ngClass]="{ 'font-bold': selectedStatus === 'SUCCESS' }"
         (click)="selectItem('SUCCESS')"
-        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-36 text-center"
+        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
       >
-        Success
+        Paid
         <div
           [ngClass]="{
             'bg-transparent -translate-y-[10%]': selectedStatus !== 'SUCCESS',
@@ -38,7 +38,7 @@
       <li
         [ngClass]="{ 'font-bold': selectedStatus === 'PENDING' }"
         (click)="selectItem('PENDING')"
-        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-36 text-center"
+        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
       >
         Pending
         <div
@@ -49,10 +49,12 @@
           class="group-hover:translate-y-[18px] group-hover:bg-myTeal w-full h-1 transition-all duration-200"
         ></div>
       </li>
-      <!-- <li
+
+      <!-- delivered -->
+      <li
         [ngClass]="{ 'font-bold': selectedStatus === 'delivered' }"
         (click)="selectItem('delivered')"
-        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-36 text-center"
+        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
       >
         Delivered
         <div
@@ -63,10 +65,44 @@
           class="group-hover:translate-y-[18px] group-hover:bg-myTeal w-full h-1 transition-all duration-200"
         ></div>
       </li>
+
+      <!-- sent -->
+      <li
+        [ngClass]="{ 'font-bold': selectedStatus === 'Sent' }"
+        (click)="selectItem('Sent')"
+        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
+      >
+        Sent
+        <div
+          [ngClass]="{
+            'bg-transparent -translate-y-[10%]': selectedStatus !== 'Sent',
+            'bg-myTeal translate-y-[18px]': selectedStatus === 'Sent'
+          }"
+          class="group-hover:translate-y-[18px] group-hover:bg-myTeal w-full h-1 transition-all duration-200"
+        ></div>
+      </li>
+
+      <!-- que -->
+      <li
+        [ngClass]="{ 'font-bold': selectedStatus === 'Queued' }"
+        (click)="selectItem('Queued')"
+        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
+      >
+        Queued
+        <div
+          [ngClass]="{
+            'bg-transparent -translate-y-[10%]': selectedStatus !== 'Queued',
+            'bg-myTeal translate-y-[18px]': selectedStatus === 'Queued'
+          }"
+          class="group-hover:translate-y-[18px] group-hover:bg-myTeal w-full h-1 transition-all duration-200"
+        ></div>
+      </li>
+
+      <!-- submitted
       <li
         [ngClass]="{ 'font-bold': selectedStatus === 'submitted' }"
         (click)="selectItem('submitted')"
-        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-36 text-center"
+        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
       >
         Submitted
         <div
@@ -77,10 +113,12 @@
           class="group-hover:translate-y-[18px] group-hover:bg-myTeal w-full h-1 transition-all duration-200"
         ></div>
       </li> -->
+
+      <!-- failed -->
       <li
         [ngClass]="{ 'font-bold': selectedStatus === 'FAILED' }"
         (click)="selectItem('FAILED')"
-        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-36 text-center"
+        class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
       >
         Failed
         <div
