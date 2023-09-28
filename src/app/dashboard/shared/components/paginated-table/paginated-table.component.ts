@@ -109,7 +109,8 @@ export class PaginatedTableComponent implements OnInit  {
       next: (data) => {
         if(data.status == 200) {
           this.transactionService.getAll().subscribe();        
-          this.changeStatus.emit('all')
+          this.changeStatus.emit('all');
+          this.closeModal()
         } 
       },
       error: (error) => {
