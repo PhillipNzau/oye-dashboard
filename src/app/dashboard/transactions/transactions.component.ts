@@ -65,7 +65,6 @@ export class TransactionsComponent implements OnInit {
 
     // Apply search filter
     if (this.searchText) {
-      console.log(this.tableData);
       
       const searchTextLower = this.searchText.toLowerCase();
       this.filteredTableData = this.tableData.filter(item =>
