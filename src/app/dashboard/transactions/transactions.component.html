@@ -36,15 +36,15 @@
         ></div>
       </li>
       <li
-        [ngClass]="{ 'font-bold': selectedStatus === 'PENDING' }"
-        (click)="selectItem('PENDING')"
+        [ngClass]="{ 'font-bold': selectedStatus === 'UNPAID' }"
+        (click)="selectItem('UNPAID')"
         class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
       >
-        Pending
+        Unpaid
         <div
           [ngClass]="{
-            'bg-transparent -translate-y-[10%]': selectedStatus !== 'PENDING',
-            'bg-myTeal translate-y-[18px]': selectedStatus === 'PENDING'
+            'bg-transparent -translate-y-[10%]': selectedStatus !== 'UNPAID',
+            'bg-myTeal translate-y-[18px]': selectedStatus === 'UNPAID'
           }"
           class="group-hover:translate-y-[18px] group-hover:bg-myTeal w-full h-1 transition-all duration-200"
         ></div>
