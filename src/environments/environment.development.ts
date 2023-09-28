@@ -6,10 +6,12 @@ export const environment = {
     loginUrl: baseUrl + '/login',
     refreshUrl: baseUrl + '/refresh/token',
 
-     // transaction url
-     transactionUrl: baseUrl + '/topups/list',
-     customersUrl: baseUrl + '/topups/customers',
-     dashboardUrl: baseUrl + '/dashboard/stats',
-     customersDashboardUrl: baseUrl + '/dashboard/customers/stats',
-     customerDashboardUrl: baseUrl + '/dashboard/customer/stats'
+    // transaction url
+    transactionUrl: baseUrl + '/topups/list',
+    checkStatusTransactionUrl: baseUrl + '/topups/check/status',
+    checkAllTransactionUrl: baseUrl + '/topups/check/all',
+    customersUrl: baseUrl + '/topups/customers',
+    dashboardUrl: baseUrl + '/dashboard/stats',
+    customersDashboardUrl: baseUrl + '/dashboard/customers/stats',
+    customerDashboardUrl: baseUrl + '/dashboard/customer/stats'
 };

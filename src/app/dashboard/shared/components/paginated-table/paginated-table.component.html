@@ -5,15 +5,22 @@
   </p> -->
 
   <!-- the table -->
+  <div
+    class="w-full bg-cyan-950 text-white text-left text-sm md:text-xl font-bold px-10 py-3.5"
+  >
+    <div class="p-2 flex items-center justify-between">
+      <p>Latest Transactions</p>
+      <p
+        *ngIf="selectedStatus == 'PENDING'"
+        class="text-sm underline text-green-500 hover:cursor-pointer"
+        (click)="checkTransaction(undefined)"
+      >
+        Check All Pending
+      </p>
+    </div>
+  </div>
   <table class="min-w-full min-h-[250px] border mb-3.5">
     <thead class="bg-zinc-100 text-cyan-950">
-      <tr
-        class="bg-cyan-950 text-white text-left text-sm md:text-xl font-bold px-10 py-3.5"
-      >
-        <th class="p-2" colspan="9">
-          <span class="text-transparent w-8">.</span> Latest Transactions
-        </th>
-      </tr>
       <tr class="tex-center">
         <th class="p-2">#</th>
         <th class="p-2">Mobile</th>
@@ -57,7 +64,8 @@
           <!-- pending status -->
           <div
             *ngIf="item.payment_status == 'PENDING'"
-            class="flex items-center justify-center gap-2 text-violet-700"
+            class="flex items-center justify-center gap-2 text-violet-700 hover:cursor-pointer"
+            (click)="openModal(item)"
           >
             <div class="w-2 h-2 rounded-full bg-violet-700"></div>
             {{ item.payment_status }}
@@ -190,7 +198,7 @@
       </svg>
     </div>
     <h1 class="font-bold text-3xl text-center mb-1">Pending Transaction</h1>
-    <p>Airtime For: +254720012789</p>
+    <p>Airtime For: {{ transactionCheck?.airtime_for }}</p>
   </div>
 
   <!-- modal body -->
@@ -208,31 +216,20 @@
         </thead>
         <tbody>
           <tr class="text-cyan-950 text-center">
-            <td class="py-2">+254720012789</td>
-            <td class="py-2">Ksh 200</td>
-            <td class="py-2">28 Aug 2023</td>
-            <td class="py-2">19:09:57</td>
+            <td class="py-2">{{ transactionCheck?.airtime_for }}</td>
+            <td class="py-2">Ksh {{ transactionCheck?.amount }}</td>
+            <td class="py-2">{{ transactionCheck?.date }}</td>
+            <td class="py-2">{{ transactionCheck?.time }}</td>
           </tr>
         </tbody>
       </table>
-    </div>
-
-    <!-- Input mpesa code -->
-    <div class="flex flex-col items-center justify-center gap-2 mb-11">
-      <p class="text-cyan-950 text-center">Enter the M-PESA Code</p>
-      <input
-        type="text"
-        name="mpesa"
-        id=""
-        class="outline-none border border-cyan-950 w-64 h-11 rounded-full px-4"
-      />
     </div>
 
     <!-- modal buttons -->
     <div class="flex items-center center w-full mx-auto mb-9">
       <button
         class="w-64 h-11 mx-auto rounded-full bg-cyan-950 hover:bg-cyan-950 text-myTeal font-bold transition-all duration-200"
-        (click)="showPendingModal = false"
+        (click)="checkTransaction(transactionCheck?.id)"
       >
         Check Transaction
       </button>

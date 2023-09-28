@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalComponent } from '../modal/modal.component';
 import { LinksModel, MetaModel, TransactionModel } from 'src/app/auth/models/transactionModel';
 import { TransactionEntityService } from '../../ngrx-store/transaction/transaction.entity.service';
+import { TransactionsTableService } from '../../services/transactions-table.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-paginated-table',
@@ -16,6 +18,7 @@ export class PaginatedTableComponent implements OnInit  {
   @Input() selectedStatus: string = '';
   @Input() searchText: string = '';
   @Input() tableData: TransactionModel[] = [] ;
+  @Output() changeStatus = new EventEmitter<string>();
 
   // pagination data fom api
   links:string = '';
@@ -27,25 +30,23 @@ export class PaginatedTableComponent implements OnInit  {
 
   // modal triggers
   showPendingModal:boolean = false;
-
-  constructor(
-    private transactionService: TransactionEntityService
-  ){}
-
-  closeModal(): void {
-    this.showPendingModal = false;
-  }
-
-  
   pagedTableData: any[] = []; // Array to hold the paginated data
   
-
   // Pagination settings
   config: any = {
     id: 'custom-pagination',
     itemsPerPage: 9,
     currentPage: 1
   };
+
+  // transaction to check
+  transactionCheck: TransactionModel | undefined;
+
+  constructor(
+    private transactionService: TransactionEntityService,
+    private checkTransactionService: TransactionsTableService,
+    private route: Router
+  ){}
 
   ngOnInit() {
     const tableLinks = localStorage.getItem('links')
@@ -91,5 +92,30 @@ export class PaginatedTableComponent implements OnInit  {
 
       }
     });
+  }
+
+  // modal
+  openModal(item:TransactionModel):void {
+    this.transactionCheck = item
+    
+    this.showPendingModal = true;
+  }
+  closeModal(): void {
+    this.showPendingModal = false;
+  }
+
+  checkTransaction(id:number | undefined) {
+    this.checkTransactionService.checkTransaction(id).subscribe({
+      next: (data) => {
+        if(data.status == 200) {
+          this.transactionService.getAll().subscribe();        
+          this.changeStatus.emit('all')
+        } 
+      },
+      error: (error) => {
+
+      }
+    })
+
   }
 }

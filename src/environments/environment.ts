@@ -9,6 +9,8 @@ export const environment = {
 
     // transaction url
     transactionUrl: baseUrl + '/topups/list',
+    checkStatusTransactionUrl: baseUrl + '/topups/check/status',
+    checkAllTransactionUrl: baseUrl + '/topups/check/all',
     customersUrl: baseUrl + '/topups/customers',
     dashboardUrl: baseUrl + '/dashboard/stats',
     customersDashboardUrl: baseUrl + '/dashboard/customers/stats',
