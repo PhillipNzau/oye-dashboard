@@ -50,7 +50,7 @@
   <!-- customers table -->
   <div class="md:w-1/2 w-full">
     <!-- show loading animation -->
-    <div *ngIf="isLoading" class="w-16 mx-auto relative">
+    <div *ngIf="isLoading" class="py-32 w-16 mx-auto relative">
       <p
         class="w-16 h-16 border-t-4 border-cyan-950 border-solid rounded-full animate-spin"
       ></p>
@@ -66,7 +66,16 @@
 
   <!-- customer left stats -->
   <div class="bg-white rounded-xl w-full md:w-1/2 min-h-[272px]">
-    <div class="md:grid grid-cols-2">
+    <!-- show loading animation -->
+    <div *ngIf="isDashLoading" class="py-32 w-16 mx-auto relative">
+      <p
+        class="w-16 h-16 border-t-4 border-cyan-950 border-solid rounded-full animate-spin"
+      ></p>
+      <p class="text-cyan-950 py-2">Loading...</p>
+    </div>
+
+    <!-- customers stats -->
+    <div *ngIf="!isDashLoading" class="md:grid grid-cols-2">
       <div
         class="border-b md:border-r border-myTeal flex items-center justify-center gap-7 p-12"
       >
@@ -79,7 +88,9 @@
           <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
             Total Customers
           </p>
-          <p class="text-cyan-950 text-[28px] font-bold">12,000</p>
+          <p class="text-cyan-950 text-[28px] font-bold">
+            {{ totalCustomers }}
+          </p>
         </div>
       </div>
 
@@ -93,15 +104,17 @@
         />
         <div class="">
           <p class="text-cyan-950 text-opacity-60 text-sm font-normal">
-            Other Customers
+            Airtime Customers
           </p>
-          <p class="text-cyan-950 text-[28px] font-bold">1,000</p>
+          <p class="text-cyan-950 text-[28px] font-bold">
+            {{ airtimeCustomers }}
+          </p>
         </div>
       </div>
     </div>
 
     <!-- new customers chart -->
-    <div class="w-full md:p-6">
+    <div *ngIf="!isDashLoading" class="w-full md:p-6">
       <h1 class="p-6 md:p-0 text-cyan-950 font-bold tex-xl">New Customers</h1>
       <div [chart]="chart"></div>
     </div>

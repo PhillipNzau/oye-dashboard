@@ -4,6 +4,7 @@ import { PaginatedTableComponent } from "../shared/components/paginated-table/pa
 import { FormsModule } from '@angular/forms';
 import { TransactionModel } from 'src/app/auth/models/transactionModel';
 import { TransactionEntityService } from '../shared/ngrx-store/transaction/transaction.entity.service';
+import { TransactionsTableService } from '../shared/services/transactions-table.service';
 
 @Component({
     selector: 'app-transactions',
@@ -19,7 +20,9 @@ export class TransactionsComponent implements OnInit {
   searchText: string = '';
   filteredTableData: TransactionModel[] = [];
 
-  constructor(private transactionService: TransactionEntityService
+  constructor(
+    private transactionService: TransactionEntityService,
+    private transactionFilterService: TransactionsTableService
     ){}
 
   ngOnInit(): void {
@@ -54,8 +57,9 @@ export class TransactionsComponent implements OnInit {
   filterData() {
     // Apply filter based on selectedStatus
     if (this.selectedStatus === 'all') {
-      this.filteredTableData = this.tableData.slice();
+      this.getTransactions()
     } else {
+      
       this.filteredTableData = this.tableData.filter(item => 
         item.payment_status === this.selectedStatus ||
         item.airtime_status === this.selectedStatus
@@ -77,7 +81,18 @@ export class TransactionsComponent implements OnInit {
   // Filter table with the status tabs
   selectItem(item: string) {
     this.selectedStatus = item;
-    this.filterData()
+    this.transactionFilterService.getFilteredTransaction(item).subscribe({
+      next: (data) => {
+      this.tableData = data
+      this.filterData();
+      },
+      error: (error) => {
+        console.log('error getting transaction filter data', error);
+      }
+    });
+    
+
   }
+
 
 }

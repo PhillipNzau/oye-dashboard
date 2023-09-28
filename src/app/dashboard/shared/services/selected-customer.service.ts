@@ -3,12 +3,15 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { TransactionResModel } from 'src/app/auth/models/transactionModel';
 import { environment } from 'src/environments/environment';
+import { CustomerDashboardModel, CustomersDashboardModel } from '../models/dashboardModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SelectedCustomerService {
-  customerUrl = environment.customersUrl
+  customerUrl = environment.customersUrl;
+  customerDashboardUrl = environment.customerDashboardUrl
+
 
   constructor(
     private http: HttpClient,
@@ -30,5 +33,11 @@ export class SelectedCustomerService {
       })
     )
 
+  }
+
+  getCustomerDashboardStats(customerNumber:string) {
+    return this.http.get<CustomerDashboardModel>(`${this.customerDashboardUrl}/${customerNumber}`).pipe(map((stats: CustomerDashboardModel)=> {      
+      return stats
+    }))
   }
 }

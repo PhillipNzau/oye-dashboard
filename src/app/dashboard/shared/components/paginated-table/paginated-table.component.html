@@ -33,13 +33,21 @@
         class="text-center text-cyan-950 border-b border-slate-400"
       >
         <td class="p-2">{{ item.id }}</td>
-        <td class="p-2">{{ item.mobile }}</td>
-        <td class="p-2">{{ item.amount }}</td>
+        <td class="p-2">
+          <div
+            *ngIf="item.mobile == null"
+            class="flex items-center justify-center gap-2 text-2xl text-neutral-600"
+          >
+            -
+          </div>
+          {{ item.mobile }}
+        </td>
+        <td class="p-2 text-start">Ksh {{ item.amount }}</td>
         <td class="p-2">{{ item.airtime_for }}</td>
         <td class="p-2">
           <!-- paid status -->
           <div
-            *ngIf="item.payment_status == 'SUCCESS'"
+            *ngIf="item.payment_status == 'PAID'"
             class="flex items-center justify-center gap-2 text-green-400"
           >
             <div class="w-2 h-2 rounded-full bg-green-400"></div>
@@ -57,24 +65,41 @@
 
           <!-- failed status -->
           <div
-            *ngIf="item.payment_status == 'FAILED'"
+            *ngIf="item.payment_status == 'UNPAID'"
             class="flex items-center justify-center gap-2 text-red-600"
           >
             <div class="w-2 h-2 rounded-full bg-red-600"></div>
             {{ item.payment_status }}
           </div>
+
+          <!-- Null status -->
+          <div
+            *ngIf="item.payment_status == null"
+            class="flex items-center justify-center gap-2 text-2xl text-neutral-600"
+          >
+            -
+          </div>
         </td>
         <td class="p-2">
-          <!-- active status -->
+          <!-- Delivered status -->
           <div
-            *ngIf="item.airtime_status == 'SUCCESS'"
+            *ngIf="item.airtime_status == 'DELIVERED'"
             class="flex items-center justify-center gap-2 text-green-400"
           >
             <div class="w-2 h-2 rounded-full bg-green-400"></div>
             {{ item.airtime_status }}
           </div>
 
-          <!-- Inactive status -->
+          <!-- Sent status -->
+          <div
+            *ngIf="item.airtime_status == 'SENT'"
+            class="flex items-center justify-center gap-2 text-blue-400"
+          >
+            <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+            {{ item.airtime_status }}
+          </div>
+
+          <!-- Failed status -->
           <div
             *ngIf="item.airtime_status == 'FAILED'"
             class="flex items-center justify-center gap-2 text-red-600"
@@ -83,19 +108,36 @@
             {{ item.airtime_status }}
           </div>
 
-          <!-- Submitted status -->
+          <!-- Queued status -->
           <div
-            *ngIf="item.airtime_status == 'PENDING'"
+            *ngIf="item.airtime_status == 'QUEUED'"
             class="flex items-center justify-center gap-2 text-violet-700"
             (click)="showPendingModal = true"
           >
             <div class="w-2 h-2 rounded-full bg-violet-700"></div>
             {{ item.airtime_status }}
           </div>
+
+          <!-- Null status -->
+          <div
+            *ngIf="item.airtime_status == null"
+            class="flex items-center justify-center gap-2 text-2xl text-neutral-600"
+          >
+            -
+          </div>
         </td>
         <td class="p-2">{{ item.date }}</td>
         <td class="p-2">{{ item.time }}</td>
-        <td class="p-2">{{ item.receipt_number }}</td>
+        <td class="p-2">
+          <!-- Null status -->
+          <div
+            *ngIf="item.receipt_number == null"
+            class="flex items-center justify-center gap-2 text-2xl text-neutral-600"
+          >
+            -
+          </div>
+          {{ item.receipt_number }}
+        </td>
       </tr>
     </tbody>
   </table>

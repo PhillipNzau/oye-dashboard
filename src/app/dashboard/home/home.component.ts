@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     total_sales:number | undefined;
     average_purchase: number | undefined;
     customers:number | undefined;
-    balance:number | undefined;
+    balance:string | undefined;
     
     constructor(
     private toastService: HotToastService,
@@ -75,8 +75,7 @@ export class HomeComponent implements OnInit {
           this.total_sales = data.total_sales;
           this.average_purchase = data.average_purchase;
           this.balance = data.balance;
-          this.customers = data.customers;
-          
+          this.customers = data.customers; 
 
         },
         error: (error) => {
