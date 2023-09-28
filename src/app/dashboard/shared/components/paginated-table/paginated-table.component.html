@@ -5,15 +5,21 @@
   </p> -->
 
   <!-- the table -->
+  <div
+    class="w-full bg-cyan-950 text-white text-left text-sm md:text-xl font-bold px-10 py-3.5"
+  >
+    <div class="p-2 flex items-center justify-between">
+      <p>Latest Transactions</p>
+      <p
+        *ngIf="selectedStatus == 'PENDING'"
+        class="text-sm underline text-green-500 hover:cursor-pointer"
+      >
+        Check All Pending
+      </p>
+    </div>
+  </div>
   <table class="min-w-full min-h-[250px] border mb-3.5">
     <thead class="bg-zinc-100 text-cyan-950">
-      <tr
-        class="bg-cyan-950 text-white text-left text-sm md:text-xl font-bold px-10 py-3.5"
-      >
-        <th class="p-2" colspan="9">
-          <span class="text-transparent w-8">.</span> Latest Transactions
-        </th>
-      </tr>
       <tr class="tex-center">
         <th class="p-2">#</th>
         <th class="p-2">Mobile</th>
