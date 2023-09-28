@@ -35,7 +35,7 @@ export class PaginatedTableComponent implements OnInit  {
   // Pagination settings
   config: any = {
     id: 'custom-pagination',
-    itemsPerPage: 9,
+    itemsPerPage: 10,
     currentPage: 1
   };
 
