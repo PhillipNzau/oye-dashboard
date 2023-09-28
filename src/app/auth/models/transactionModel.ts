@@ -29,3 +29,8 @@ export interface MetaModel {
     last_page: number,
     total: number
 }
+
+export interface CheckModel {
+    status:number;
+    message:string;
+  }

@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
 import { DefaultDataService, HttpUrlGenerator } from "@ngrx/data";
 import { HttpOptions, QueryParams } from "@ngrx/data/src/dataservices/interfaces";
 import { Observable, map } from "rxjs";
@@ -17,7 +16,6 @@ export class TransactionDataService extends DefaultDataService<any> {
     constructor(
         http:HttpClient,
         httpUrlGenerator: HttpUrlGenerator,
-        private route: Router
     ){
         super('Transaction', http, httpUrlGenerator)
     }
