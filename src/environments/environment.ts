@@ -11,4 +11,6 @@ export const environment = {
     transactionUrl: baseUrl + '/topups/list',
     customersUrl: baseUrl + '/topups/customers',
     dashboardUrl: baseUrl + '/dashboard/stats',
+    customersDashboardUrl: baseUrl + '/dashboard/customers/stats',
+    customerDashboardUrl: baseUrl + '/dashboard/customer/stats'
 };

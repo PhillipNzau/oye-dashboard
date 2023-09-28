@@ -1,4 +1,6 @@
-<section class="w-full h-screen flex items-center justify-center px-3 md:px-6">
+<section
+  class="w-full h-screen flex items-center justify-center px-3 md:px-6 bg-myTeal"
+>
   <form
     *ngIf="!forgotPwd"
     [formGroup]="loginForm"
@@ -62,16 +64,11 @@
 
       <button
         [disabled]="loginForm.invalid"
-        [ngClass]="{ 'bg-transparent text-gray-400': loginForm.invalid }"
-        class="bg-myTeal border border-slate-400 rounded-lg w-full h-14 px-6 placeholder-neutral-300 text-cyan-950 text-base md:text-xl font-bold transition-all duration-200"
+        [ngClass]="{ 'bg-transparent text-myTeal': loginForm.invalid }"
+        class="bg-myTeal border border-myTeal rounded-lg w-full h-14 px-6 text-cyan-950 text-base md:text-xl font-bold transition-all duration-200"
       >
         Login
       </button>
-      <p
-        class="text-slate-400 text-base font-medium hover:cursor-pointer border-b border-transparent md:w-1/2 hover:border-slate-400 transition-all duration-200"
-      >
-        Forgot your password?
-      </p>
     </div>
   </form>
 </section>
