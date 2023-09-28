@@ -22,15 +22,15 @@
         ></div>
       </li>
       <li
-        [ngClass]="{ 'font-bold': selectedStatus === 'SUCCESS' }"
-        (click)="selectItem('SUCCESS')"
+        [ngClass]="{ 'font-bold': selectedStatus === 'PAID' }"
+        (click)="selectItem('PAID')"
         class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
       >
         Paid
         <div
           [ngClass]="{
-            'bg-transparent -translate-y-[10%]': selectedStatus !== 'SUCCESS',
-            'bg-myTeal translate-y-[18px]': selectedStatus === 'SUCCESS'
+            'bg-transparent -translate-y-[10%]': selectedStatus !== 'PAID',
+            'bg-myTeal translate-y-[18px]': selectedStatus === 'PAID'
           }"
           class="group-hover:translate-y-[18px] group-hover:bg-myTeal w-full h-1 transition-all duration-200"
         ></div>
@@ -52,15 +52,15 @@
 
       <!-- delivered -->
       <li
-        [ngClass]="{ 'font-bold': selectedStatus === 'delivered' }"
-        (click)="selectItem('delivered')"
+        [ngClass]="{ 'font-bold': selectedStatus === 'DELIVERED' }"
+        (click)="selectItem('DELIVERED')"
         class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
       >
         Delivered
         <div
           [ngClass]="{
-            'bg-transparent -translate-y-[10%]': selectedStatus !== 'delivered',
-            'bg-myTeal translate-y-[18px]': selectedStatus === 'delivered'
+            'bg-transparent -translate-y-[10%]': selectedStatus !== 'DELIVERED',
+            'bg-myTeal translate-y-[18px]': selectedStatus === 'DELIVERED'
           }"
           class="group-hover:translate-y-[18px] group-hover:bg-myTeal w-full h-1 transition-all duration-200"
         ></div>
@@ -68,15 +68,15 @@
 
       <!-- sent -->
       <li
-        [ngClass]="{ 'font-bold': selectedStatus === 'Sent' }"
-        (click)="selectItem('Sent')"
+        [ngClass]="{ 'font-bold': selectedStatus === 'SENT' }"
+        (click)="selectItem('SENT')"
         class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
       >
         Sent
         <div
           [ngClass]="{
-            'bg-transparent -translate-y-[10%]': selectedStatus !== 'Sent',
-            'bg-myTeal translate-y-[18px]': selectedStatus === 'Sent'
+            'bg-transparent -translate-y-[10%]': selectedStatus !== 'SENT',
+            'bg-myTeal translate-y-[18px]': selectedStatus === 'SENT'
           }"
           class="group-hover:translate-y-[18px] group-hover:bg-myTeal w-full h-1 transition-all duration-200"
         ></div>
@@ -84,15 +84,15 @@
 
       <!-- que -->
       <li
-        [ngClass]="{ 'font-bold': selectedStatus === 'Queued' }"
-        (click)="selectItem('Queued')"
+        [ngClass]="{ 'font-bold': selectedStatus === 'QUEUED' }"
+        (click)="selectItem('QUEUED')"
         class="group hover:cursor-pointer hover:font-bold transition-all duration-200 w-28 text-sm text-center"
       >
         Queued
         <div
           [ngClass]="{
-            'bg-transparent -translate-y-[10%]': selectedStatus !== 'Queued',
-            'bg-myTeal translate-y-[18px]': selectedStatus === 'Queued'
+            'bg-transparent -translate-y-[10%]': selectedStatus !== 'QUEUED',
+            'bg-myTeal translate-y-[18px]': selectedStatus === 'QUEUED'
           }"
           class="group-hover:translate-y-[18px] group-hover:bg-myTeal w-full h-1 transition-all duration-200"
         ></div>
