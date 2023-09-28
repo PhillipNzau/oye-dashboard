@@ -22,11 +22,11 @@ export class PaginatedTableComponent implements OnInit  {
 
   // pagination data fom api
   links:string = '';
-  currentPage : number | undefined;
+  currentPage!: number;
   nextPage: any;
   prevPage: string | undefined;
   lastPage: number | undefined;
-  totalPages:number| undefined;
+  totalPages!:number;
 
   // modal triggers
   showPendingModal:boolean = false;
@@ -41,6 +41,7 @@ export class PaginatedTableComponent implements OnInit  {
 
   // transaction to check
   transactionCheck: TransactionModel | undefined;
+  
 
   constructor(
     private transactionService: TransactionEntityService,

@@ -39,7 +39,8 @@ export class TransactionsComponent implements OnInit {
     this.transactionService.entities$.subscribe({
       next:(res) => {
         this.tableData = res
-        this.filteredTableData = this.tableData.slice();
+        this.filteredTableData = this.tableData
+        
         if(this.tableData.length > 0) {
           this.isLoading = false;        
         }
@@ -59,32 +60,32 @@ export class TransactionsComponent implements OnInit {
     if (this.selectedStatus === 'all') {
       this.getTransactions()
     } else {
-      
-      this.filteredTableData = this.tableData.filter(item => 
-        item.payment_status === this.selectedStatus ||
-        item.airtime_status === this.selectedStatus
-        );
+      this.filteredTableData = this.tableData
     }
 
     // Apply search filter
     if (this.searchText) {
+      console.log(this.tableData);
+      
       const searchTextLower = this.searchText.toLowerCase();
-      this.filteredTableData = this.filteredTableData.filter(item =>
-        item.mobile.toLowerCase().includes(searchTextLower) ||
-        item.amount.toLowerCase().includes(searchTextLower) ||
-        item.date.toLowerCase().includes(searchTextLower) ||
-        item.receipt_number.toLowerCase().includes(searchTextLower)
+      this.filteredTableData = this.tableData.filter(item =>
+        (item.mobile && item.mobile.toString().toLowerCase().includes(searchTextLower)) ||
+        (item.amount && item.amount.toString().toLowerCase().includes(searchTextLower)) ||
+        (item.date && item.date.toString().toLowerCase().includes(searchTextLower)) ||
+        (item.receipt_number && item.receipt_number.toString().toLowerCase().includes(searchTextLower))
       );
     }
   }
 
   // Filter table with the status tabs
   selectItem(item: string) {
+    
     this.selectedStatus = item;
     this.transactionFilterService.getFilteredTransaction(item).subscribe({
       next: (data) => {
-      this.tableData = data
-      this.filterData();
+      this.tableData = data;
+      this.filterData()
+     
       },
       error: (error) => {
         console.log('error getting transaction filter data', error);

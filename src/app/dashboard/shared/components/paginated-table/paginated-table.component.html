@@ -11,7 +11,7 @@
     <div class="p-2 flex items-center justify-between">
       <p>Latest Transactions</p>
       <p
-        *ngIf="selectedStatus == 'PENDING'"
+        *ngIf="selectedStatus == 'UNPAID'"
         class="text-sm underline text-green-500 hover:cursor-pointer"
         (click)="checkTransaction(undefined)"
       >
@@ -64,10 +64,10 @@
           <!-- pending status -->
           <div
             *ngIf="item.payment_status == 'PENDING'"
-            class="flex items-center justify-center gap-2 text-violet-700 hover:cursor-pointer"
+            class="flex items-center justify-center gap-2 text-red-600 hover:cursor-pointer"
             (click)="openModal(item)"
           >
-            <div class="w-2 h-2 rounded-full bg-violet-700"></div>
+            <div class="w-2 h-2 rounded-full bg-red-600"></div>
             {{ item.payment_status }}
           </div>
 
@@ -157,16 +157,57 @@
       {{ config.currentPage * config.itemsPerPage }} of {{ totalPages }} entries
     </p>
 
-    <pagination-controls
-      class="pt-4"
-      [id]="config.id"
-      [maxSize]="4"
-      [directionLinks]="true"
-      [autoHide]="false"
-      previousLabel=""
-      nextLabel=""
-      (pageChange)="onPageChange($event)"
-    ></pagination-controls>
+    <div class="flex items-center">
+      <p
+        *ngIf="config.currentPage > 1"
+        (click)="onPageChange(config.currentPage - 1)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5"
+          />
+        </svg>
+      </p>
+      <pagination-controls
+        class="pt-4"
+        [id]="config.id"
+        [maxSize]="4"
+        [directionLinks]="false"
+        [autoHide]="false"
+        previousLabel=""
+        nextLabel=""
+        (pageChange)="onPageChange($event)"
+      ></pagination-controls>
+
+      <p
+        *ngIf="config.currentPage * config.itemsPerPage < totalPages"
+        (click)="onPageChange(config.currentPage + 1)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 4.5l7.5 7.5-7.5 7.5"
+          />
+        </svg>
+      </p>
+    </div>
   </div>
 </div>
 
