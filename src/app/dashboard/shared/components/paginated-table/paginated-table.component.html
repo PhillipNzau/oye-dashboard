@@ -33,7 +33,7 @@
         <th class="p-2">Receipt Number</th>
       </tr>
     </thead>
-    <tbody class="bg-white">
+    <tbody class="bg-white text-sm">
       <!-- Add your table rows here -->
       <tr
         *ngFor="let item of tableData | paginate : config; let i = index"
@@ -49,7 +49,7 @@
           </div>
           {{ item.mobile }}
         </td>
-        <td class="p-2 text-start">Ksh {{ item.amount }}</td>
+        <td class="p-2">Ksh {{ item.amount }}</td>
         <td class="p-2">{{ item.airtime_for }}</td>
         <td class="p-2">
           <!-- paid status -->
