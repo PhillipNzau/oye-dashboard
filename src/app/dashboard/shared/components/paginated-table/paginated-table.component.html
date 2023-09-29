@@ -9,7 +9,16 @@
     class="w-full bg-cyan-950 text-white text-left text-sm md:text-xl font-bold px-10 py-3.5"
   >
     <div class="p-2 flex items-center justify-between">
-      <p>{{ selectedStatus | titlecase }} Transactions</p>
+      <p>
+        {{
+          selectedStatus == "all" ||
+          selectedStatus == "PAID" ||
+          selectedStatus == "UNPAID"
+            ? (selectedStatus | titlecase)
+            : "Paid and " + (selectedStatus | titlecase) + " " + "Airtime"
+        }}
+        Transactions
+      </p>
       <p
         *ngIf="selectedStatus == 'UNPAID'"
         class="text-sm underline text-green-500 hover:cursor-pointer"
