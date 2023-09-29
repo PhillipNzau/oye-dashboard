@@ -104,7 +104,7 @@ export class CustomersComponent implements OnInit {
             },
           series: [
             {
-              name: 'Data',
+              name: 'TXN',
               data: this.chartData,
             } as any
           ],

@@ -33,3 +33,7 @@
 .highcharts-yaxis, .highcharts-yaxis-labels, .highcharts-legend, .highcharts-grid-line, .highcharts-axis-line   {
     display: none !important;
 }
+.highcharts-point-hover {
+    fill: red !important;
+
+}
